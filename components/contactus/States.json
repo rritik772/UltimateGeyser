@@ -1,0 +1,146 @@
+[
+    {
+        "value": "AP",
+        "state": "Andhra Pradesh"
+    },
+    {
+        "value": "AN",
+        "state": "Andaman and Nicobar"
+    },
+    {
+        "value": "AR",
+        "state": "Arunachal Pradesh"
+    },
+    {
+        "value": "AS",
+        "state": "Assam"
+    },
+    {
+        "value": "BH",
+        "state": "Bihar"
+    },
+    {
+        "value": "CH",
+        "state": "Chandigarh"
+    },
+    {
+        "value": "CHG",
+        "state": "Chhattisgarh"
+    },
+    {
+        "value": "DH",
+        "state": "Delhi"
+    },
+    {
+        "value": "DNH",
+        "state": "Dadra & Nagar Haveli and Daman & Diu"
+    },
+    {
+        "value": "GO",
+        "state": "Goa"
+    },
+    {
+        "value": "GJ",
+        "state": "Gujarat"
+    },
+    {
+        "value": "HY",
+        "state": "Haryana"
+    },
+    {
+        "value": "HP",
+        "state": "Himachal Pradesh"
+    },
+    {
+        "value": "JK",
+        "state": "Jammu & Kashmir"
+    },
+    {
+        "value": "JH",
+        "state": "Jharkhand"
+    },
+    {
+        "value": "KT",
+        "state": "Karnataka"
+    },
+    {
+        "value": "KR",
+        "state": "Kerala"
+    },
+    {
+        "value": "LA",
+        "state": "Ladakh"
+    },
+    {
+        "value": "LD",
+        "state": "Lakshadweep"
+    },
+    {
+        "value": "MP",
+        "state": "Madhya Pradesh"
+    },
+    {
+        "value": "MH",
+        "state": "Maharashtra"
+    },
+    {
+        "value": "MN",
+        "state": "Manipur"
+    },
+    {
+        "value": "ML",
+        "state": "Meghalaya"
+    },
+    {
+        "value": "MZ",
+        "state": "Mizoram"
+    },
+    {
+        "value": "NL",
+        "state": "Nagaland"
+    },
+    {
+        "value": "OS",
+        "state": "Odisha"
+    },
+    {
+        "value": "PY",
+        "state": "Puducherry"
+    },
+    {
+        "value": "PJ",
+        "state": "Punjab"
+    },
+    {
+        "value": "RJ",
+        "state": "Rajasthan"
+    },
+    {
+        "value": "SK",
+        "state": "Sikkim"
+    },
+    {
+        "value": "TN",
+        "state": "Tamil Nadu"
+    },
+    {
+        "value": "TG",
+        "state": "Telangana"
+    },
+    {
+        "value": "TR",
+        "state": "Tripura"
+    },
+    {
+        "value": "UP",
+        "state": "Uttar Pradesh"
+    },
+    {
+        "value": "UK",
+        "state": "Uttarakhand"
+    },
+    {
+        "value": "WB",
+        "state": "West Bengal"
+    }
+]

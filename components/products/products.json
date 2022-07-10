@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Prunto Neo Duronox",
+        "desc": "Electric Instant Water Heater, High Pressure Resistance 3L",
+        "price": 4899.00,
+        "color": ["white"],
+        "capacity": ["3L", "6L"],
+        "img": "/assets/images/products/electric-instant-geyser-h.png"
+    },
+    {
+        "name": "Prunto Stylo Duronox",
+        "desc": "Electric Instant Water Heater, Faster Heating 3L",
+        "price": 4999.00,
+        "color": ["white"],
+        "capacity": ["3L", "6L", "9L"],
+        "img": "/assets/images/products/electric-storage-geyser-h.png"
+    },
+    {
+        "name": "Prunto Neo",
+        "desc": "Electric Instant Water Heater, High Pressure Resistance 3L",
+        "price": 5899.00,
+        "color": ["white", "Gold"],
+        "capacity": ["3L", "6L"],
+        "img": "/assets/images/products/New-BG-Pronto-Neo-single.png"
+    },
+    {
+        "name": "Prunto Neo Duronox",
+        "desc": "Electric Instant Water Heater, High Pressure Resistance 3L",
+        "price": 7899.00,
+        "color": ["white"],
+        "capacity": ["3L", "6L", "12L"],
+        "img": "/assets/images/products/electric-instant-geyser-h.png"
+    },
+]

@@ -1,25 +1,31 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react'
-import NavDropLink from './NavDropLink';
 import NavLink from './NavLink';
 
 function Navbar() {
+    const router = useRouter();
     const [menuToggle, setMenuToggle] = useState<boolean>(true);
     return (
-        <nav className="<lg:(flex-col items-start gap-10) lg:(flex-row justify-between) flex select-none px-2 mb-3">
+        <nav className="<lg:(flex-col items-start gap-10) lg:(flex-row justify-between) flex select-none px-2 mb-3 bg-white">
             <section className="<lg:(flex-col) lg:(flex-row) flex items-center">
 
                 <div className="flex gap-4 items-center">
                     <i className="lg:(hidden) bi bi-list text-3xl" onClick={() => setMenuToggle(!menuToggle)}></i>
-                    <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-4 px-5 text-xl font-bold tracking-wide uppercase rounded-lg cursor-pointer">Racold</button>
+                    <Link href="/">
+                        <a>
+                            <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-4 px-5 text-xl font-bold tracking-wide uppercase rounded-lg cursor-pointer">Racold</button>
+                        </a>
+                    </Link>
                 </div>
 
                 {
                     (menuToggle) &&
                     <div className="<lg:(ml-8 gap-3 flex-col text-md) lg:(ml-10 gap-4 flex-row text-lg) flex uppercase tracking-wide">
-                        <div className='mt-2'/>
-                        <NavLink value="products" link="/product" current={true}/>
-                        <NavLink value="contact us" link="/contactus" current={false}/>
-                        <NavLink value="about us" link="/aboutus" current={false}/>
+                        <div className='mt-2' />
+                        <NavLink value="products" link="/products" current={router.asPath} />
+                        <NavLink value="contact us" link="/contactus" current={router.asPath} />
+                        <NavLink value="about us" link="/aboutus" current={router.asPath} />
                     </div>
                 }
             </section>
