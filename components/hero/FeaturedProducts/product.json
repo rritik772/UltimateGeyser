@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Ominis Wi-fi",
+        "desc": "Electric Storage Water Heater, Wi-Fi connect with remote access 15L/25L",
+        "price": 21099,
+        "img": "/assets/images/featured_products/Omnis–3-min.png" 
+    },
+    {
+        "name": "Aures Pro 24 kW",
+        "desc": "Power: 24kW, Micro Processor Based Output Temperature",
+        "price": 42999,
+        "img": "/assets/images/featured_products/pRONTO-500X500_5.png"
+    },
+    {
+        "name": "Ominis Wi-fi",
+        "desc": "Electric Storage Water Heater, Wi-Fi connect with remote access 15L/25L",
+        "price": 21099,
+        "img": "/assets/images/featured_products/Layer 1_0.png"
+    },
+    {
+        "name": "Aures Pro 24 kW",
+        "desc": "Power: 24kW, Micro Processor Based Output Temperature",
+        "price": 42999,
+        "img": "/assets/images/featured_products/CDR-Dlx-plus-500x500_0.png"
+    }
+]
