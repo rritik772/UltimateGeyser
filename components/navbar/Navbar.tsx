@@ -1,0 +1,56 @@
+import React, { useState } from 'react'
+import NavDropLink from './NavDropLink';
+import NavLink from './NavLink';
+
+function Navbar() {
+    const [menuToggle, setMenuToggle] = useState<boolean>(true);
+    return (
+        <nav className="<lg:(flex-col items-start gap-10) lg:(flex-row justify-between) flex select-none px-2 mb-3">
+            <section className="<lg:(flex-col) lg:(flex-row) flex items-center">
+
+                <div className="flex gap-4 items-center">
+                    <i className="lg:(hidden) bi bi-list text-3xl" onClick={() => setMenuToggle(!menuToggle)}></i>
+                    <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-4 px-5 text-xl font-bold tracking-wide uppercase rounded-lg cursor-pointer">Racold</button>
+                </div>
+
+                {
+                    (menuToggle) &&
+                    <div className="<lg:(ml-8 gap-3 flex-col text-md) lg:(ml-10 gap-4 flex-row text-lg) flex uppercase tracking-wide">
+                        <div className='mt-2'/>
+                        <NavLink value="products" link="/product" current={true}/>
+                        <NavLink value="contact us" link="/contactus" current={false}/>
+                        <NavLink value="about us" link="/aboutus" current={false}/>
+                    </div>
+                }
+            </section>
+
+            {
+                (menuToggle) &&
+                <section className="sm:(w-full) lg:(w-max) bg-gray-700 px-8 py-2 rounded text-white flex gap-8 items-center justify-around flex-wrap">
+                    <span className="flex flex-col items-center py-2 cursor-pointer hover:(text-red-500)">
+                        <i className="bi bi-geo text-3xl"></i>
+                        location
+                    </span>
+                    <span className="flex flex-col items-center py-2 cursor-pointer hover:(text-red-500)">
+                        <i className="bi bi-question-square text-3xl"></i>
+                        Enquire Us
+                    </span>
+                    <span className="flex flex-col items-center py-2 cursor-pointer hover:(text-red-500)">
+                        <i className="bi bi-telephone text-3xl"></i>
+                        Call Us
+                    </span>
+                    <label htmlFor="search-item" className="relative">
+                        <input
+                            id="search-item"
+                            type="text"
+                            className="@sm:(w-full) md:(w-36) text-black p-2 focus:outline-none rounded "
+                        />
+                        <button className="bi bi-search absolute px-4 py-2 right-0 rounded bg-gray-700 hover:text-red-500"></button>
+                    </label>
+                </section>
+            }
+        </nav>
+    )
+}
+
+export default Navbar
