@@ -1,0 +1,46 @@
+[
+    {
+        "topic": "GEYSERS",
+        "links": [
+            {
+                "value": "Electric Instant Heater",
+                "endpoint": "/electrict-instant-heater"
+            },
+            {
+                "value": "Electric Storage Geyser",
+                "endpoint": "/electric storage"
+            }
+        ]
+    },
+    {
+        "topic": "support",
+        "links": [
+            {
+                "value": "Product Enquiry",
+                "endpoint": "/product"
+            }
+        ]
+    },
+    {
+        "topic": "about us",
+        "links": [
+            {
+                "value": "Why Racold",
+                "endpoint": "/aboutus"
+            },
+            {
+                "value": "Awards",
+                "endpoint": "/awards"
+            }
+        ]
+    },
+    {
+        "topic": "For bussiness",
+        "links": [
+            {
+                "value": "View projects",
+                "endpoint": "view-projects"
+            }
+        ]
+    }
+]

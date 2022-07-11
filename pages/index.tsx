@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Footer from '../components/footer/Footer'
 import AboutRacold from '../components/hero/AboutRacold/AboutRacold'
 import Carousel from '../components/hero/Carousel'
 import FeaturedProduct from '../components/hero/FeaturedProducts/FeaturedProduct'
@@ -17,6 +18,7 @@ const Home: NextPage = () => {
       <FeaturedProduct />
       <AboutRacold />
       <HelpLine />
+      <Footer />
     </>
   )
 }

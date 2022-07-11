@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react'
 import { useTrail, a } from '@react-spring/web';
 
 interface link {
-    value: string,
+    value: string
     endpoint: string
 }
 

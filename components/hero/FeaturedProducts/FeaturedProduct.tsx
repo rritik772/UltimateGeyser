@@ -23,7 +23,7 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, img }) => {
 
   return (
     <div
-      className='flex flex-col p-5 items-center w-72 rounded-lg hover:(shadow) border'
+      className='flex flex-col p-5 items-center w-72 rounded-lg hover:(shadow)'
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
@@ -52,7 +52,7 @@ const FeaturedProduct = () => {
   return (
     <div className='py-10'>
 
-      <section className='flex flex-col items-center'>
+      <section className='flex flex-col items-center text-center'>
         <span className='font-bold uppercase tracking-wide text-4xl text-red-500 underline'>Featured Products</span>
         <span className='mt-2 font-mono font-xl uppercase tracking-widest'>Choose from the best heating solution</span>
       </section>
