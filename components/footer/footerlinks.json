@@ -25,12 +25,20 @@
         "topic": "about us",
         "links": [
             {
+                "value": "Who Are We",
+                "endpoint": "/aboutus#who-are-we"
+            },
+            {
                 "value": "Why Racold",
-                "endpoint": "/aboutus"
+                "endpoint": "/aboutus#why-racold"
             },
             {
                 "value": "Awards",
                 "endpoint": "/awards"
+            },
+            {
+                "value": "Youtube",
+                "endpoint": "/aboutus"
             }
         ]
     },

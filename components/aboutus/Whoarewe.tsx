@@ -10,7 +10,7 @@ const WhoAreWe = () => {
                 backgroundRepeat: 'no-repeat'
             }}> */}
             <section className='flex flex-col items-center gap-5'>
-                <span className='<md:text-6xl md:text-7xl font-black text-red-500'>Who Are We</span>
+                <span className='<md:text-6xl md:text-7xl font-black text-red-500' id="who-are-we">Who Are We</span>
                 <p className='<md:(w-full) md:(w-[34rem]) text-xl leading-loose text-center'>
                     Ariston gives more homes access to 
                     advanced sustainble comfotable solutions using less energy and effort, so we
