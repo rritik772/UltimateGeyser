@@ -45,7 +45,7 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, color, capac
 
 const Products = () => {
   return (
-    <div className='flex gap-5 flex-wrap'>
+    <div className='flex gap-5 flex-wrap justify-center'>
       {
         products_list.map((item, key) => (
           <SingleProduct key={key} {...item} />

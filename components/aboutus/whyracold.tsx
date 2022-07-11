@@ -10,7 +10,7 @@ interface SingleCardProps {
 
 const SingleCard: FC<SingleCardProps> = ({ topic, img, desc }) => {
     return (
-        <section className='flex flex-col justify-center gap-5 p-5 border shadow w-76 rounded-lg'>
+        <section className='flex flex-col justify-center gap-5 p-5 border shadow <md:w-full md:w-76 rounded-lg'>
             <span className='text-center text-2xl text-red-500 font-bold tracking-wide'>{topic}</span>
             <div className='w-[150px] h-[150px] relative bg-gray-700 self-center rounded-lg overflow-hidden'>
                 <Image alt="topic" src={img} layout='fill' />
@@ -25,11 +25,11 @@ const SingleCard: FC<SingleCardProps> = ({ topic, img, desc }) => {
 const WhyRacold = () => {
     return (
         <div className='my-10'>
-            <section className='flex flex-col items-center'>
+            <section className='flex flex-col items-center p-5'>
                 <span className='font-bold uppercase tracking-wide text-4xl text-red-500 underline-black'>Why racold?</span>
-                <span className='mt-5 font-xl uppercase tracking-widest'>Racold Geysers are equipped with path-breaking technologies in water heating</span>
+                <span className='mt-5 font-xl uppercase tracking-widest text-center'>Racold Geysers are equipped with path-breaking technologies in water heating</span>
             </section>
-            <section className='mt-10 flex justify-center gap-5'>
+            <section className='mt-10 flex flex-wrap justify-center gap-5 p-5'>
                 {
                     whyracold.map((item, key) => (
                         <SingleCard key={key} topic={item.topic} img={item.img} desc={item.desc} />

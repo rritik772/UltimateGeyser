@@ -6,9 +6,9 @@ import footlinks from './footerlinks.json'
 const Footer = () => {
     return (
         <div className='bg-gray-100 py-10'>
-            <div className='container mx-auto flex flex-col'>
+            <div className='<md:(px-5) container mx-auto flex flex-col'>
                 <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-4 px-5 text-xl tracking-widest uppercase rounded-lg cursor-pointer rubik font-black self-start">Racold</button>
-                <section className='flex gap-5 justify-evenly my-10'>
+                <section className='<md:(flex-col) md:(flex-row) flex gap-5 justify-evenly my-10'>
                     {
                         footlinks.map((item, key) => (
                             <FooterDropLinks
@@ -44,7 +44,7 @@ const Footer = () => {
                     </section>
                 </section>
                 
-                <section className='border-y border-gray-700 py-5 flex justify-between'>
+                <section className='border-y border-gray-700 py-5 gap-3 flex <md:flex-col md:flex-row justify-between'>
                     <span className='text-sm text-gray-600'>More ways to shop: Find a Store near you. Or call 1860 425 2288 for enquiries</span>
                     <div className='flex gap-3 text-sm'>
                         <Link href="/privacy-poly">
