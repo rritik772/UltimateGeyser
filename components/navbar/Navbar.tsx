@@ -14,7 +14,7 @@ function Navbar() {
                     <i className="lg:(hidden) bi bi-list text-3xl" onClick={() => setMenuToggle(!menuToggle)}></i>
                     <Link href="/">
                         <a>
-                            <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-4 px-5 text-xl font-bold tracking-wide uppercase rounded-lg cursor-pointer">Racold</button>
+                            <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-4 px-5 text-xl tracking-widest uppercase rounded-lg cursor-pointer rubik font-black">Racold</button>
                         </a>
                     </Link>
                 </div>
@@ -32,7 +32,7 @@ function Navbar() {
 
             {
                 (menuToggle) &&
-                <section className="sm:(w-full) lg:(w-max) bg-gray-700 px-8 py-2 rounded text-white flex gap-8 items-center justify-around flex-wrap">
+                <section className="sm:(w-full) lg:(w-max) bg-gray-700 px-8 py-2 rounded text-white flex gap-8 items-center justify-around flex-wrap rubik">
                     <span className="flex flex-col items-center py-2 cursor-pointer hover:(text-red-500)">
                         <i className="bi bi-geo text-3xl"></i>
                         location

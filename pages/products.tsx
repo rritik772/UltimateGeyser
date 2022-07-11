@@ -4,7 +4,7 @@ import PropductFilters from '../components/products/PropductFilters'
 
 const Products = () => {
   return (
-    <div>
+    <div className='pb-20'>
         <Navbar />
         <PropductFilters />
     </div>

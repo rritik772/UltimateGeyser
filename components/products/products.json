@@ -31,4 +31,12 @@
         "capacity": ["3L", "6L", "12L"],
         "img": "/assets/images/products/electric-instant-geyser-h.png"
     },
+    {
+        "name": "Prunto Neo Duronox V2",
+        "desc": "Electric Instant Water Heater, High Pressure Resistance 3L",
+        "price": 7899.00,
+        "color": ["white"],
+        "capacity": ["3L", "6L", "12L"],
+        "img": "/assets/images/products/electric-instant-geyser-h.png"
+    }
 ]

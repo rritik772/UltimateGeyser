@@ -4,7 +4,11 @@ import 'windi.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <div className='rubik'>
+      <Component {...pageProps} />
+    </div>
+  )
 }
 
 export default MyApp

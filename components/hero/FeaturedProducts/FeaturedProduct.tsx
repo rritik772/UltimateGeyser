@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { useSpring, animated } from 'react-spring';
 import product_data from './product.json';
 
 interface SingleProductProps {
@@ -10,9 +11,22 @@ interface SingleProductProps {
 }
 
 const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, img }) => {
+  const [open, setOpen] = useState<boolean>(false);
+
+  const spring = useSpring({
+    to: {
+      opacity: open ? 1 : 0,
+      height: open ? 40 : 0
+    }
+  });
+
+
   return (
-    <div className='flex flex-col items-center w-72 rounded-lg hover:(shadow)'>
-      <div className='p-5 flex flex-col items-center'>
+    <div
+      className='flex flex-col p-5 items-center w-72 rounded-lg hover:(shadow) border'
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
         <div className='relative h-44 w-44'>
           <Image
             alt={name}
@@ -24,11 +38,12 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, img }) => {
         <span className='font-bold uppercase my-3'>{name}</span>
         <span className='text-justify text-gray-500 text-sm'>{desc}</span>
         <span className='mt-5 font-bold font-mono text-2xl'>MRP. <span className='text-red-500'>{price}</span></span>
-      </div>
-      <div className='mt-10 flex gap-2 mb-5 self-strech'>
-        <button className='px-2 py-3 rounded-lg border border-red-500 hover:(text-white bg-red-500 shadow) font-bold'>Detail View</button>
-        <button className='px-2 py-3 rounded-lg border border-red-500 hover:(text-white bg-red-500 shadow) font-bold'>Quick View</button>
-      </div>
+
+      <animated.div className='flex gap-2 mt-5' style={spring}>
+        <button className='btn btn-red'>Buy Now</button>
+        <button className='btn btn-red'>Quick View</button>
+      </animated.div>
+
     </div>
   )
 }
@@ -46,6 +61,7 @@ const FeaturedProduct = () => {
         {
           product_data.map((item, key) => (
             <SingleProduct
+              key={key}
               name={item.name}
               desc={item.desc}
               price={item.price}

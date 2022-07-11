@@ -6,9 +6,9 @@ interface SingleKnowledgeCardProps  {
     date: string
 }
 
-const SingleKnowledgeCard: FC<SingleKnowledgeCardProps> = ({ tag, topic, date }) => {
+// const SingleKnowledgeCard: FC<SingleKnowledgeCardProps> = ({ tag, topic, date }) => {
 
-}
+// }
 
 const KnowledgeCenter = () => {
   return (
