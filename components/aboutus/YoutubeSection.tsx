@@ -9,19 +9,19 @@ const YoutubeSection = () => {
             </section>
             <section className='flex justify-center gap-5 flex-wrap p-5'>
                 <div className='border shadow rounded-lg overflow-hidden'>
-                    <iframe  src="https://www.youtube.com/embed/u6NOTogsw8M" className="<md:w-[20rem] w-[30rem] h-[25rem]" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe  src="https://www.youtube.com/embed/u6NOTogsw8M" className="<md:w-[20rem] w-[30rem] h-[25rem]" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div>
                 <div className='border shadow rounded-lg overflow-hidden'>
-                    <iframe  src="https://www.youtube.com/embed/u6NOTogsw8M" className="<md:w-[20rem] w-[30rem] h-[25rem]" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe  src="https://www.youtube.com/embed/u6NOTogsw8M" className="<md:w-[20rem] w-[30rem] h-[25rem]" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div>
                 <div className='border shadow rounded-lg overflow-hidden'>
-                    <iframe  src="https://www.youtube.com/embed/u6NOTogsw8M" className="<md:w-[20rem] w-[30rem] h-[25rem]" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe  src="https://www.youtube.com/embed/u6NOTogsw8M" className="<md:w-[20rem] w-[30rem] h-[25rem]" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div>
                 <div className='border shadow rounded-lg overflow-hidden'>
-                    <iframe  src="https://www.youtube.com/embed/u6NOTogsw8M" className="<md:w-[20rem] w-[30rem] h-[25rem]" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe  src="https://www.youtube.com/embed/u6NOTogsw8M" className="<md:w-[20rem] w-[30rem] h-[25rem]" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div>
                 <div className='border shadow rounded-lg overflow-hidden'>
-                    <iframe  src="https://www.youtube.com/embed/u6NOTogsw8M" className="<md:w-[20rem] w-[30rem] h-[25rem]" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe  src="https://www.youtube.com/embed/u6NOTogsw8M" className="<md:w-[20rem] w-[30rem] h-[25rem]" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div>
             </section>
         </div>
