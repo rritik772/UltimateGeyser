@@ -9,6 +9,10 @@ const AboutRacold = () => {
             <span className='text-gray-500 text-lg'>With an extensive portfolio of premium quality water geysers like electric water heaters, storage water heaters, gas water heaters, solar water heaters and heat pumps that encompass the entire spectrum water heating solutions.</span>
             <button className='self-center px-5 py-3 border border-red-500 font-bold rounded-lg hover:(text-white bg-red-500 shadow)'>Know More</button>
         </section>
+
+                <div className='self-start <md:(hidden) lg:(hidden) @md:(inline) border shadow rounded-lg overflow-hidden'>
+                    <iframe  src="https://www.youtube.com/embed/u6NOTogsw8M" className="<md:w-[20rem] w-[30rem] h-[25rem]" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                </div>
         <section className='<md:(h-[250px] w-screen) md:(h-[500px] w-[750px]) relative'>
             <Image alt="racold" src="/assets/images/about/ariston-thermo-group.jpg" layout='fill' />
         </section>
