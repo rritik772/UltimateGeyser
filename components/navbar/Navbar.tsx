@@ -1,12 +1,16 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSpring, animated } from 'react-spring';
 import NavLink from './NavLink';
 
 function Navbar() {
     const router = useRouter();
-    const [open, setOpen] = useState<boolean>(true);
+    const [open, setOpen] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (window.innerWidth > 1023) setOpen(true);
+    }, [])
 
     return (
         <nav className="<lg:(flex-col items-start gap-10) lg:(flex-row justify-between) flex select-none px-2 mb-3 bg-white">
