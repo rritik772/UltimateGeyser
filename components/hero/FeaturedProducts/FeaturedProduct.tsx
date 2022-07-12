@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import product_data from './product.json';
 
@@ -13,19 +13,10 @@ interface SingleProductProps {
 const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, img }) => {
   const [open, setOpen] = useState<boolean>(false);
 
-  const [buttonHeight, setButtonHeight] = useState(40);
-  const buttonRef = useRef(null);
-
   const spring = useSpring({
     opacity: open ? 1 : 0,
     height: open ? 40 : 0,
   });
-
-  useEffect(() => {
-    console.log(buttonRef)
-    if (buttonRef && buttonRef.current && buttonRef.current.offsetHeight)
-      setButtonHeight(buttonRef.current.offsetHeight);
-  }, [])
 
   return (
     <div
@@ -46,7 +37,7 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, img }) => {
       <span className='mt-5 font-bold font-mono text-2xl'>MRP. <span className='text-red-500'>{price}</span></span>
 
       <animated.div className='flex gap-2 mt-5 h-auto' style={spring}>
-        <button className='btn btn-red-outline' ref={buttonRef}>Buy Now</button>
+        <button className='btn btn-red-outline'>Buy Now</button>
         <button className='btn btn-red-outline'>Quick View</button>
       </animated.div>
     </div>
