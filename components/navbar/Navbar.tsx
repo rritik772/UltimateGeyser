@@ -38,18 +38,26 @@ function Navbar() {
             {
                 open &&
                 <div className="sm:(w-full) lg:(w-max) bg-gray-700 px-8 py-2 rounded text-white flex gap-8 items-center justify-around flex-wrap rubik">
-                    <span className="flex flex-col items-center py-2 cursor-pointer hover:(text-red-500)">
-                        <i className="bi bi-geo text-3xl"></i>
+                   <a   href="https://goo.gl/maps/HZSrMBHMp9K4CYXG7" target="_blank">
+                    <span className="flex flex-col items-center py-2 cursor-pointer hover:(text-red-500)" >
+                        <i className="bi bi-geo text-3xl" ></i>
                         location
                     </span>
+                   </a>
+
+                    <Link href="/contactus">
                     <span className="flex flex-col items-center py-2 cursor-pointer hover:(text-red-500)">
                         <i className="bi bi-question-square text-3xl"></i>
                         Enquire Us
                     </span>
+                    </Link>
+
+                    <a href='tel:+91-9792979287'>
                     <span className="flex flex-col items-center py-2 cursor-pointer hover:(text-red-500)">
                         <i className="bi bi-telephone text-3xl"></i>
                         Call Us
-                    </span>
+                    </span></a>
+
                     <label htmlFor="search-item" className="relative">
                         <input
                             id="search-item"

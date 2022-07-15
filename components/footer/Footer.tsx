@@ -21,16 +21,19 @@ const Footer = () => {
                     <section className='flex flex-col gap-3'>
                         <span className='font-bold text-lg uppercase'>Contact Us</span>
                         <div>
-                            <p>Ariston Thermo India Private Limited, </p>
-                            <p>1st Floor, Office No. 103,</p>
-                            <p>Mayfair Tower, Wakdewadi,</p>
-                            <p>Shivajinagar Pune 411005</p>
-                            <p>Maharashtra, India</p>
+                            <p>KTS APPLIANCES PRIVATE LIMITED </p>
+                            <p>Plot No. 533, Near Mor Market,</p>
+                            <p>Block B, Sector 56, </p>
+                            <p>Gurugram (Haryana)- 122011</p>
+                           
 
 
-                            <p className='my-3'>CIN-123456789345678</p>
+                            <p className='my-3'>CIN-U51909HR2022PTC105155</p>
 
-                            <p>Email: customer.care@racold.com</p>
+
+                            <p> For enquiry call: <a href='tel:+91-9792979287'>+91-9792979287</a></p>
+
+                            <p> Write to us: <a href="mailto:info@willerhot.com" target="_blank" >info@willerhot.com </a></p>
                         </div>
 
                         <span className='font-bold text-lg uppercase mt-5'>Follow Us on</span>
@@ -45,7 +48,7 @@ const Footer = () => {
                 </section>
                 
                 <section className='border-y border-gray-700 py-5 gap-3 flex <md:flex-col md:flex-row justify-between'>
-                    <span className='text-sm text-gray-600'>More ways to shop: Find a Store near you. Or call 1860 425 2288 for enquiries</span>
+                    <span className='text-sm text-gray-600'>More ways to shop: Find a Store. Write to us at <a href="mailto:info@willerhot.com" >info@willerhot.com</a> or call  <a href='tel:+91-9792979287'>+91-9792979287</a> for enquiries</span>
                     <div className='flex gap-3 text-sm'>
                         <Link href="/privacy-poly">
                             <a><span className='uppercase'>Privacy Policy</span></a>
