@@ -12,7 +12,7 @@ const AddProduct = () => {
     const [imgs, setImgs] = useState<FileList>()
     const [loading, setLoading] = useState(false);
 
-    const handleImages = (e) => {
+    const handleImages = (e: any) => {
         setLoading(true);
 
         if (!e.target.files[0]) return;
@@ -30,7 +30,7 @@ const AddProduct = () => {
         setLoading(false);
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
         setLoading(true);
         e.preventDefault();
 
