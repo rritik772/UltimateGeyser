@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "bootstrap-icons": "^1.8.3",
+    "firebase": "^9.9.0",
     "next": "12.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-spring": "^9.4.5",
-    "react-spring-carousel": "^2.0.19"
+    "react-spring-carousel": "^2.0.19",
+    "react-toastify": "^9.0.5"
   },
   "devDependencies": {
     "@types/node": "18.0.3",

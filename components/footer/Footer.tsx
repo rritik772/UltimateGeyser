@@ -56,6 +56,9 @@ const Footer = () => {
                         <Link href="/privacy-poly">
                             <a><span className='uppercase'>Disclaimer Policy</span></a>
                         </Link>
+                        <Link href="/admin">
+                            <a><span className='uppercase'>Admin</span></a>
+                        </Link>
                     </div>
                 </section>
                 <span className='self-end mt-5 text-gray-700'>All rights reserved by Someone Mags India Private Limited</span>

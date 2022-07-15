@@ -9,6 +9,18 @@ const nextConfig = {
   },
   reactStrictMode: true,
   swcMinify: true,
+  images: {domains: ['firebasestorage.googleapis.com']},
+  env: {
+    APIKEY: process.env.APIKEY,
+    AUTHDOMAIN: process.env.AUTHDOMAIN,
+    DATABASEURL: process.env.DATABASEURL,
+    PROJECTID: process.env.PROJECTID,
+    STORAGEBUCKET: process.env.STORAGEBUCKET,
+    MESSAGINGSENDERID: process.env.MESSAGINGSENDERID,
+    APPID: process.env.APPID,
+    MEASUREMENTID: process.env.MEASUREMENTID
+  }
+
 }
 
 module.exports = nextConfig
