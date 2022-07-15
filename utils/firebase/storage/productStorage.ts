@@ -1,10 +1,10 @@
-import { ref, uploadBytes, getBlob, listAll, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getBlob, listAll, getDownloadURL, deleteObject } from "firebase/storage";
 import { storage } from "../../../firebase";
 
-export const addProductsImages = async (images: FileList, name: string) => {
+export const addProductsImages = async (images: FileList, uid: string) => {
 
   for (let image of Array.from(images)) {
-    let value = await uploadBytes(ref(storage, `products/${name}/${image.name}`), image)
+    let value = await uploadBytes(ref(storage, `products/${uid}/${image.name}`), image)
     .then(() => {
         console.log(`file: ${image.name} uploaded`)
         return true;
@@ -19,6 +19,13 @@ export const addProductsImages = async (images: FileList, name: string) => {
 
   return true;
 };
+
+export const deleteImages = async (uid: string): Promise<boolean> => {
+  const toBeDeletedRef = ref(storage, `products/${uid}`)
+  return await deleteObject(toBeDeletedRef)
+    .then(() => true)
+    .catch(() => false)
+}
 
 
 export const getProductImages = async (name: string): Promise<string[]> => {

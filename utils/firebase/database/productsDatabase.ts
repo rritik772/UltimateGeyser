@@ -8,16 +8,30 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { database } from "../../../firebase";
-import { ProductModal } from "../../../models/product/product-modal";
+import { ProductErrorModal } from "../../../models/error/errorModal";
+import { ProductConverter, ProductModal } from "../../../models/product/product-modal";
 
-export const addProducts = async (product: ProductModal): Promise<boolean> => {
+export const addProducts = async (product: ProductModal): Promise<ProductErrorModal> => {
   return await addDoc(collection(database, "products"), product)
-    .then(() => true)
-    .catch(() => false);
+    .then((doc) => ({type: true, message: "Added Successfully", additional: {uid: doc.id}}))
+    .catch(() => ({type: true, message: "Added Successfully"}));
 };
 
+export const updateProduct = async (product: ProductModal, uid: string): Promise<ProductErrorModal> => {
+  return await setDoc(doc(database, "products", uid), {
+    name: product.name,
+    price: product.price,
+    discount: product.discount,
+    desc: product.desc,
+    featureProduct: product.featuredProduct,
+    uid: uid
+  })
+    .then(() => ({type: true, message: "Successfully updated"}))
+    .catch(() => ({type: true, message: "Cannot update."}))
+}
+
 export const getProducts = async (): Promise<ProductModal[]> => {
-  return await getDocs(query(collection(database, "products")))
+  return await getDocs(query(collection(database, "products").withConverter(ProductConverter)))
     .then((docs) => {
       let result: ProductModal[] = [];
 

@@ -3,6 +3,8 @@ import AdminNavbar from '../../components/admin/adminNavbar/AdminNavbar'
 import { toast } from 'react-toastify';
 import { addProducts } from '../../utils/firebase/database/productsDatabase';
 import { addProductsImages } from '../../utils/firebase/storage/productStorage';
+import { ProductModal } from '../../models/product/product-modal';
+import { ProductErrorModal } from '../../models/error/errorModal';
 
 const AddProduct = () => {
     const [name, setName] = useState('');
@@ -11,6 +13,7 @@ const AddProduct = () => {
     const [desc, setDesc] = useState('');
     const [imgs, setImgs] = useState<FileList>()
     const [loading, setLoading] = useState(false);
+    const [featuredProduct, setFeaturedProduct] = useState(false);
 
     const handleImages = (e: any) => {
         setLoading(true);
@@ -19,6 +22,7 @@ const AddProduct = () => {
 
         for (let img of e.target.files) {
             if (parseFloat((img.size / (1024 * 1024)).toFixed(1)) > 0.50) {
+                setLoading(false);
                 toast.error('File size too large');
                 return;
             }
@@ -51,12 +55,15 @@ const AddProduct = () => {
             return;
         }
 
-        let isProdAdded = await addProducts({ name, price, discount, desc });
-        let isImageUploaded = await addProductsImages(imgs!, name);
+        let isProdAdded: ProductErrorModal = await addProducts(new ProductModal(name, price, discount, desc, featuredProduct));
 
-        if (isProdAdded && isImageUploaded) toast.success("Product added successfully")
-        else if (isProdAdded) toast.warning("Product is added but images can't be uploaded.")
-        else toast.error("Something went wrong.")
+        if (isProdAdded.type) {
+            let isImageUploaded = await addProductsImages(imgs!, isProdAdded.additional!.uid!);
+            if (isImageUploaded)
+                toast.success("Product added successfully")
+            else
+                toast.warning("Product is added but images can't be uploaded.")
+        } else toast.error("Something went wrong.")
 
         setLoading(false);
     }
@@ -71,6 +78,11 @@ const AddProduct = () => {
                     <input type="number" className="contactus-input" placeholder='Normal Price' value={price} onChange={e => setPrice(parseInt(e.target.value))} />
                     <input type="number" className="contactus-input" placeholder='Discount (%)' value={discount} onChange={e => setDiscount(parseFloat(e.target.value))} />
                     <textarea className="contactus-input" placeholder='Description' value={desc} onChange={e => setDesc(e.target.value)} />
+
+                    <div className='select-none'>
+                        <input type="checkbox" id="featuredProduct" className='accent-red-500 mr-2' checked={featuredProduct} onChange={() => setFeaturedProduct(!featuredProduct)} />
+                        <label htmlFor="featuredProduct">Featured Product</label>
+                    </div>
                 </section>
                 <section className='flex flex-col gap-2'>
                     <div className='h-full border border-red-500 rounded-lg p-1 text-center flex flex-col'>
