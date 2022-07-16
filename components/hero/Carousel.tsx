@@ -1,35 +1,38 @@
 import Image from 'next/image';
-import React from 'react'
+import React, { useEffect, useState, FC } from 'react'
 
 import { useSpringCarousel } from 'react-spring-carousel'
+import { getCarousalImages } from '../../utils/firebase/storage/websiteContent';
 
-export function Carousel() {
-    const images = ["/assets/images/curosal/1.jpg", "/assets/images/curosal/2.jpg", "/assets/images/curosal/3.jpg"];
+interface CarouselProps {
+    imgUrls: string[]
+}
 
+const Carousel: FC<CarouselProps> = ({ imgUrls }) => {
     const {
         carouselFragment,
         slideToPrevItem,
         slideToNextItem
     } = useSpringCarousel({
         withLoop: true,
-        items: images.map((item, idx) => ({
+        items: (imgUrls.length>0) ? imgUrls.map((item, idx) => ({
             id: idx,
             renderItem: (
-                <Image
-                    alt={`image ${idx}`}
-                    src={item}
-                    layout='fill'
-                />
+                <div className='w-full h-full flex justify-center'>
+                    <img src={item} className='h-full'/>
+                </div>
             ),
-        })) as any,
+        })) as any : defaultItems(),
     });
+
+    useEffect(() => {console.log(imgUrls)}, [imgUrls])
 
     return (
         <div className='relative overflow-hidden'>
             <button onClick={slideToPrevItem} className="z-10 focus:outline-none absolute top-0 bottom-0 my-auto bg-gray-700/50 text-white hover:text-red-500">
                 <i className='bi bi-caret-left-square text-4xl p-4'></i>
             </button>
-            <div className='relative <md:(w-screen h-56) md:(w-screen h-screen)'>
+            <div className='<md:(w-screen h-56) md:(w-screen h-screen)'>
                 {carouselFragment}
             </div>
             <button onClick={slideToNextItem} className="z-10 focus:outline-none absolute top-0 bottom-0 right-0 my-auto bg-gray-700/50 text-white hover:text-red-500">
@@ -37,6 +40,10 @@ export function Carousel() {
             </button>
         </div>
     );
+}
+
+const defaultItems = () => {
+    return [<div><i className='bi bi-circle-arrow-clockwise bg-black p-10 text-9xl'/></div>]
 }
 
 export default Carousel;
