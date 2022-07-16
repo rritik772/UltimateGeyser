@@ -6,6 +6,8 @@ import {
   getDocs,
   collection,
   addDoc,
+  where,
+  DocumentSnapshot,
 } from "firebase/firestore";
 import { database } from "../../../firebase";
 import { ProductErrorModal } from "../../../models/error/errorModal";
@@ -23,7 +25,7 @@ export const updateProduct = async (product: ProductModal, uid: string): Promise
     price: product.price,
     discount: product.discount,
     desc: product.desc,
-    featureProduct: product.featuredProduct,
+    featuredProduct: product.featuredProduct,
     uid: uid
   })
     .then(() => ({type: true, message: "Successfully updated"}))
@@ -46,3 +48,18 @@ export const getProducts = async (): Promise<ProductModal[]> => {
       return Promise.reject("Something went wrong");
     });
 };
+
+
+export const getFeaturedProduct = async (): Promise<ProductModal[]> => {
+  return await getDocs(query(collection(database, "products").withConverter(ProductConverter), where('featuredProduct', '==', true)))
+    .then((docs) => {
+      const result: ProductModal[] = [];
+      docs.forEach(doc => result.push(doc.data() as ProductModal))
+      return result;
+    })
+    .catch((err) => {
+      Promise.reject("Something went wrong.")
+      console.log(err)
+      return [];
+    })
+}

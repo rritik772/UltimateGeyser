@@ -14,7 +14,7 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
     const [discount, setDiscount] = useState<number>(product.discount);
     const [desc, setDesc] = useState(product.desc);
     const [imgs, setImgs] = useState<FileList>()
-    const [featuredProduct, setFeaturedProduct] = useState(false);
+    const [featuredProduct, setFeaturedProduct] = useState(product.featuredProduct);
     const [loading, setLoading] = useState(false);
 
     const handleImages = (e: any) => {

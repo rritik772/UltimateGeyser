@@ -25,8 +25,6 @@ const Carousel: FC<CarouselProps> = ({ imgUrls }) => {
         })) as any : defaultItems(),
     });
 
-    useEffect(() => {console.log(imgUrls)}, [imgUrls])
-
     return (
         <div className='relative overflow-hidden'>
             <button onClick={slideToPrevItem} className="z-10 focus:outline-none absolute top-0 bottom-0 my-auto bg-gray-700/50 text-white hover:text-red-500">
