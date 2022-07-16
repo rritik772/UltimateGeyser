@@ -17,7 +17,7 @@ const ContactUsMap = () => {
                     </div>
                     <p className='block'>CIN-U51909HR2022PTC105155</p>
 
-                    <p className='block'>Email: <a href="mailto:customer.care@willerhot.com" target="_blank" >customer.care@willerhot.com </a></p>
+                    <p className='block'>Email: <a href="mailto:customer.care@willerhot.com" target="_blank" rel="noreferrer">customer.care@willerhot.com </a></p>
                     <p> For enquiry call: <a href='tel:+91-9792979287'>+91-9792979287</a> (TOLL FREE) </p>
 
                     {/* <span className='font-bold text-lg uppercase mt-5'>Follow Us on</span>

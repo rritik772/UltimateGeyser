@@ -33,7 +33,7 @@ const Footer = () => {
 
                             <p> For enquiry call: <a href='tel:+91-9792979287'>+91-9792979287</a></p>
 
-                            <p> Write to us: <a href="mailto:info@willerhot.com" target="_blank" >info@willerhot.com </a></p>
+                            <p> Write to us: <a href="mailto:info@willerhot.com" target="_blank" rel="noreferrer">info@willerhot.com </a></p>
                         </div>
 
                         <span className='font-bold text-lg uppercase mt-5'>Follow Us on</span>

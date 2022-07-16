@@ -38,7 +38,7 @@ function Navbar() {
             {
                 open &&
                 <div className="sm:(w-full) lg:(w-max) bg-gray-700 px-8 py-2 rounded text-white flex gap-8 items-center justify-around flex-wrap rubik">
-                   <a   href="https://goo.gl/maps/HZSrMBHMp9K4CYXG7" target="_blank">
+                   <a   href="https://goo.gl/maps/HZSrMBHMp9K4CYXG7" target="_blank"  rel="noreferrer">
                     <span className="flex flex-col items-center py-2 cursor-pointer hover:(text-red-500)" >
                         <i className="bi bi-geo text-3xl" ></i>
                         location

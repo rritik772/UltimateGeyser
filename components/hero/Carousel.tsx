@@ -18,7 +18,7 @@ const Carousel: FC<CarouselProps> = ({ imgUrls }) => {
         items: (imgUrls.length>0) ? imgUrls.map((item, idx) => ({
             id: idx,
             renderItem: (
-                <div className='w-full h-full flex justify-center'>
+                <div className='w-full h-full flex justify-center' key={idx}>
                     <img src={item} className='h-full'/>
                 </div>
             ),
@@ -43,7 +43,7 @@ const Carousel: FC<CarouselProps> = ({ imgUrls }) => {
 }
 
 const defaultItems = () => {
-    return [<div><i className='bi bi-circle-arrow-clockwise bg-black p-10 text-9xl'/></div>]
+    return [<div key={1}><i className='bi bi-circle-arrow-clockwise bg-black p-10 text-9xl'/></div>]
 }
 
 export default Carousel;

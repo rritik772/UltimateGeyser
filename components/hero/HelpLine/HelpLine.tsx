@@ -11,7 +11,7 @@ const HelpLine = () => {
         </section>
         </a>
 
-        <a href="mailto:info@willerhot.com" target="_blank" >
+        <a href="mailto:info@willerhot.com" target="_blank"  rel="noreferrer">
         <section className='flex flex-col w-96 p-10 items-center gap-3 border rounded-lg shadow'>
             <i className='bi bi-envelope-paper-fill text-8xl text-red-500'/>
             <span className='font-bold tracking-wide mt-3 text-3xl'>info@willerhot.com</span>
@@ -20,7 +20,7 @@ const HelpLine = () => {
         </a>
 
 
-        <a href="mailto:customer.care@willerhot.com" target="_blank" >
+        <a href="mailto:customer.care@willerhot.com" target="_blank"  rel="noreferrer">
         <section className='flex flex-col w-96 p-10 items-center gap-3 border rounded-lg shadow'>
             <i className='bi bi-shop text-8xl text-red-500'/>
             <span className='font-bold tracking-wide mt-3 text-2xl'>customer.care@willerhot.com</span>
