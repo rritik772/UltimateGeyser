@@ -1,7 +1,4 @@
 import React, { FC, useEffect, useState } from 'react'
-import { useSpringCarousel } from 'react-spring-carousel';
-import { ProductModal } from '../../../models/product/product-modal';
-
 interface QuickViewProps {
     images: string[]
     name: string
@@ -14,9 +11,6 @@ interface QuickViewProps {
 const QuickView: FC<QuickViewProps> = ({ images, name, uid, desc, discount, price }) => {
     const [imgidx, setImgidx] = useState(0);
 
-    const handleImage = () => {
-    }
-
     return (
         <div className='z-10 bg-gray-100/50 p-5 fixed top-0 bottom-0 w-full flex justify-center items-center blur'>
             <div className='<md:(grid-cols-1) md:(w-[50rem] h-[35rem] grid-cols-2) grid gap-5 border border-red-500 shadow rounded-lg p-5 bg-gray-100'>
@@ -25,7 +19,7 @@ const QuickView: FC<QuickViewProps> = ({ images, name, uid, desc, discount, pric
                     {
                         images.length > 0 &&
                         <div className='h-max'>
-                            <img src={images[imgidx]} className=' rounded-lg hover:scale-110 transform duration-300' />
+                            <img src={images[imgidx]} className=' rounded-lg hover:scale-110 transform duration-300' alt={name}/>
                         </div>
                     }
                 </section>
@@ -55,7 +49,7 @@ const QuickView: FC<QuickViewProps> = ({ images, name, uid, desc, discount, pric
                             {
                                 images.length > 0 &&
                                 images.map((item, key) => (
-                                    <img src={item} key={key} className='h-full p-2 cursor-pointer border border-red-500 rounded-lg bg-white' onClick={() => setImgidx(key)} />
+                                    <img src={item} key={key} className='h-full p-2 cursor-pointer border border-red-500 rounded-lg bg-white' onClick={() => setImgidx(key)} alt={`${name}-${key}`}/>
                                 ))
                             }
                         </div>

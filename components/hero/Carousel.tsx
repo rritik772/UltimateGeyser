@@ -19,7 +19,7 @@ const Carousel: FC<CarouselProps> = ({ imgUrls }) => {
             id: idx,
             renderItem: (
                 <div className='w-full h-full flex justify-center' key={idx}>
-                    <img src={item} className='h-full'/>
+                    <img src={item} className='h-full' alt={`${idx}`}/>
                 </div>
             ),
         })) as any : defaultItems(),

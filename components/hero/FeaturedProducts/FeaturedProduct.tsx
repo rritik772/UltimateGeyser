@@ -73,10 +73,9 @@ const FeaturedProduct = () => {
 
       for await (let product of response) {
         const urls = await getProductImages(product.uid as string);
-        setImageUrls(map => new Map(map.set(product.uid, urls)));
+        setImageUrls(map => new Map(map.set(product.uid as string, urls)));
       }
 
-      console.log(imageUrls)
       setProducts(response);
       setLoading(false);
     }
@@ -105,7 +104,7 @@ const FeaturedProduct = () => {
               desc={item.desc}
               price={item.price}
               discount={item.discount}
-              uid={item.uid}
+              uid={item.uid! as string}
               images={imageUrls.get(item.uid as string)}
             />
           ))
