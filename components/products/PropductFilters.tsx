@@ -5,7 +5,6 @@ import { ProductModal } from '../../models/product/product-modal'
 import { getProducts } from '../../utils/firebase/database/productsDatabase'
 import Loading from '../loading/Loading'
 import Products from './Products'
-import products_list from './products.json'
 
 const PropductFilters = () => {
   const [allProducts, setAllProducts] = useState<ProductModal[]>([])
@@ -13,6 +12,16 @@ const PropductFilters = () => {
   const [loading, setLoading] = useState(false);
   const [colors, setColors] = useState<string[]>([])
   const [capacity, setCapacity] = useState<string[]>([])
+  const [filterMap, setFilterMap] = useState<Map<string, boolean>>(new Map());
+
+  const handleMap = (colors: string[], capacity: string[]) => {
+    for (let color of colors) {
+      setFilterMap(new Map(filterMap.set(color, false)))
+    }
+    for (let cap of capacity) {
+      setFilterMap(new Map(filterMap.set(cap, false)))
+    }
+  }
 
   useEffect(() => {
     async function getAllProduct() {
@@ -23,6 +32,7 @@ const PropductFilters = () => {
 
       setColors(aColors);
       setCapacity(aCapacity);
+      handleMap(aColors, aCapacity);
 
       setAllProducts(response)
       setProducts(response);
@@ -32,6 +42,25 @@ const PropductFilters = () => {
     getAllProduct();
   }, [])
 
+
+  useEffect(() => {
+    let allTrues: string[] = [];
+    filterMap.forEach((key, value) => {
+      console.log(value)
+      if (key === true) allTrues.push(value)
+    })
+
+    let p: ProductModal[] = []
+    allTrues.forEach((item) => {
+      allProducts.forEach(prod => {
+        if (prod.capacity.includes(item)) p.push(prod)
+        if (prod.colors.includes(item)) p.push(prod)
+      })
+    })
+
+    if (p.length === 0) p = allProducts;
+    setProducts(p);
+  }, [filterMap])
 
   const handleChange = (e: any) => {
     let p = allProducts.filter(item => {
@@ -57,7 +86,7 @@ const PropductFilters = () => {
           {
             capacity.map(item => (
               <div className='' key={item}>
-                <input type="checkbox" className='accent-red-500 mr-3' id={item} onChange={(e) => handleChange(e)}/>
+                <input type="checkbox" className='accent-red-500 mr-3' id={item} onChange={(e) => setFilterMap(new Map(filterMap.set(e.target.id, e.target.checked)))}/>
                 <label htmlFor={item}>{item}</label>
               </div>
             ))
@@ -69,7 +98,7 @@ const PropductFilters = () => {
           {
             colors.map(item => (
               <div className='' key={item}>
-                <input type="checkbox" className='accent-red-500 mr-3' id={item} onChange={(e) => handleChange(e)}/>
+                <input type="checkbox" className='accent-red-500 mr-3' id={item} onChange={(e) => setFilterMap(new Map(filterMap.set(e.target.id, e.target.checked)))}/>
                 <label htmlFor={item}>{item}</label>
               </div>
             ))

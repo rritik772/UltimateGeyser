@@ -1,11 +1,9 @@
-import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { ProductModal } from '../../../models/product/product-modal';
 import { getFeaturedProduct } from '../../../utils/firebase/database/productsDatabase';
 import { getProductImages } from '../../../utils/firebase/storage/productStorage';
 import Loading from '../../loading/Loading';
-import product_data from './product.json';
 import QuickView from './QuickView';
 
 interface SingleProductProps {
@@ -14,22 +12,28 @@ interface SingleProductProps {
   price: number
   discount: number
   uid: string
-  images: string[] | undefined
+  colors: string[]
+  capacity: string[]
 }
 
-const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, images, uid }) => {
+const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, uid, colors, capacity }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const [images, setImages] = useState<string[]>([])
 
   const spring = useSpring({
     opacity: open ? 1 : 0,
     height: open ? 40 : 0,
   });
 
-  const springAnother = useSpring({
-    opacity: quickViewOpen ? 1 : 0,
-    height: quickViewOpen ? 40 : 0,
-  });
+  useEffect(() => {
+      async function getImages() {
+        const urls = await getProductImages(uid as string);
+        setImages(urls);
+      }
+
+      getImages();
+  })
 
   return (
     <div
@@ -38,7 +42,7 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, im
       onMouseLeave={() => setOpen(false)}
     >
       {
-        images && images.length > 0 &&
+        images.length > 0 &&
         <img src={images[0]} alt={name} className='h-56 rounded-lg' />
       }
       <span className='font-bold uppercase my-3'>{name}</span>
@@ -58,7 +62,7 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, im
       </animated.div>
       {
         quickViewOpen &&
-        <QuickView images={images!} name={name} desc={desc} price={price} discount={discount} uid={uid} />
+        <QuickView images={images!} name={name} desc={desc} price={price} discount={discount} uid={uid} colors={colors} capacity={capacity}/>
       }
       {
         quickViewOpen &&
@@ -70,19 +74,12 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, im
 
 const FeaturedProduct = () => {
   const [products, setProducts] = useState<ProductModal[]>([]);
-  const [imageUrls, setImageUrls] = useState<Map<string, string[]>>(new Map());
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getFeaturedProductDetails() {
       setLoading(true);
       const response = await getFeaturedProduct();
-      console.log(response, "featured")
-
-      for await (let product of response) {
-        const urls = await getProductImages(product.uid as string);
-        setImageUrls(map => new Map(map.set(product.uid as string, urls)));
-      }
 
       setProducts(response);
       setLoading(false);
@@ -113,7 +110,8 @@ const FeaturedProduct = () => {
               price={item.price}
               discount={item.discount}
               uid={item.uid! as string}
-              images={imageUrls.get(item.uid as string)}
+              colors={item.colors}
+              capacity={item.capacity}
             />
           ))
         }

@@ -73,7 +73,7 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, co
       </animated.div>
       {
         quickViewOpen &&
-        <QuickView images={imgUrls} name={name} desc={desc} price={price} discount={discount} uid={uid as string} />
+        <QuickView images={imgUrls} name={name} desc={desc} price={price} discount={discount} uid={uid as string} colors={colors} capacity={capacity} />
       }
       {
         quickViewOpen &&
