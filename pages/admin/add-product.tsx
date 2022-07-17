@@ -97,6 +97,12 @@ const AddProduct = () => {
             setLoginLoading(true);
 
             let json = getFromLocalStorage();
+            console.log(json.password)
+            if (!json.password) {
+                router.push('/admin/login')
+                return;
+            }
+
             let loggedIn = await login(json.username, Buffer.from(json.password, 'base64').toString('ascii'));
             console.log(loggedIn)
             if (!loggedIn) {
