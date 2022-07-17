@@ -43,10 +43,10 @@ const ShowProducts = () => {
             if (!loggedIn) router.push('/admin/login')
 
             setLoginLoading(false);
+            handleGetProducts();
         }
         loginUser();
 
-        handleGetProducts();
     }, [])
 
     return (
