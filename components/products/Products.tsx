@@ -22,11 +22,14 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, co
   const [open, setOpen] = useState<boolean>(false);
   const [imgUrls, setImgUrls] = useState<string[]>([]);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function getImageUrls() {
+      setLoading(true);
       const urls = await getProductImages(uid! as string);
       setImgUrls(urls);
+      setLoading(false);
     }
     getImageUrls();
   }, [uid])
@@ -45,13 +48,17 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, co
       onMouseLeave={() => setOpen(false)}
     >
       {
-        imgUrls.length > 0 && 
-      <div className='relative w-[150px]'>
-        <img alt={name} src={imgUrls[0]} />
-      </div>
+        !loading && imgUrls.length > 0 ?
+          <div className=''>
+            <img alt={name} src={imgUrls[0]} className='h-44'/>
+          </div> :
+          <i className='bi bi-arrow-clockwise animate-spin text-4xl' />
+      }
+      {
+        !loading && imgUrls.length == 0 && <i className='bi bi-image text-red-500' />
       }
       <span className='text-center text-red-500 font-black text-xl tracking-wide'>{name}</span>
-      <span className='text-center text-sm text-gray-600'>{desc}</span>
+      <span className='text-center text-sm text-gray-600'>{desc.substring(0, 30)}...</span>
       <div className='flex flex-col items-center'>
         <div className='flex gap-3 items-end'>
           <span className='text-xl text-red-500 font-bold'>{discount}%</span>

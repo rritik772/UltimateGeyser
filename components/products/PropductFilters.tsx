@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { getCapacity } from '../../lib/Capacity'
+import { getColors } from '../../lib/Colors'
 import { ProductModal } from '../../models/product/product-modal'
 import { getProducts } from '../../utils/firebase/database/productsDatabase'
 import Loading from '../loading/Loading'
@@ -6,19 +8,41 @@ import Products from './Products'
 import products_list from './products.json'
 
 const PropductFilters = () => {
+  const [allProducts, setAllProducts] = useState<ProductModal[]>([])
   const [products, setProducts] = useState<ProductModal[]>([])
   const [loading, setLoading] = useState(false);
+  const [colors, setColors] = useState<string[]>([])
+  const [capacity, setCapacity] = useState<string[]>([])
 
   useEffect(() => {
     async function getAllProduct() {
       setLoading(true);
       const response = await getProducts();
+      const aColors = getCapacity(response);
+      const aCapacity = getColors(response);
+
+      setColors(aColors);
+      setCapacity(aCapacity);
+
+      setAllProducts(response)
       setProducts(response);
       setLoading(false);
     }
 
     getAllProduct();
   }, [])
+
+
+  const handleChange = (e) => {
+    let p = allProducts.filter(item => {
+      if (e.target.checked && item.capacity.includes(e.target.id)) return true
+      if (e.target.checked && item.colors.includes(e.target.id)) return true
+      else return false
+    })
+    if (!loading  && p.length === 0)
+      p = allProducts;
+    setProducts(p);
+  }
 
   if (loading)
     return <Loading />
@@ -30,34 +54,26 @@ const PropductFilters = () => {
 
         <section className='self-start flex flex-col font-normal tracking-wide'>
           <span className='font-bold uppercase tracking-wide'>Capacity</span>
-          <div className=''>
-            <input type="checkbox" className='accent-red-500 mr-3' id='3l'/>
-            <label htmlFor="3l">3L</label>
-          </div>
-          <div className=''>
-            <input type="checkbox" className='accent-red-500 mr-3' id='6l'/>
-            <label htmlFor="6l">6L</label>
-          </div>
-          <div className=''>
-            <input type="checkbox" className='accent-red-500 mr-3' id='9l'/>
-            <label htmlFor="9l">9L</label>
-          </div>
+          {
+            capacity.map(item => (
+              <div className='' key={item}>
+                <input type="checkbox" className='accent-red-500 mr-3' id={item} onChange={(e) => handleChange(e)}/>
+                <label htmlFor={item}>{item}</label>
+              </div>
+            ))
+          }
         </section>
 
         <section className='self-start flex flex-col font-normal tracking-wide mt-5'>
           <span className='font-bold uppercase tracking-wide'>Colour</span>
-          <div className=''>
-            <input type="checkbox" className='accent-red-500 mr-3' id='white'/>
-            <label htmlFor="white">White</label>
-          </div>
-          <div className=''>
-            <input type="checkbox" className='accent-red-500 mr-3' id='sandy'/>
-            <label htmlFor="sandy">Sandy</label>
-          </div>
-          <div className=''>
-            <input type="checkbox" className='accent-red-500 mr-3' id='off-white'/>
-            <label htmlFor="off-white">Off-white</label>
-          </div>
+          {
+            colors.map(item => (
+              <div className='' key={item}>
+                <input type="checkbox" className='accent-red-500 mr-3' id={item} onChange={(e) => handleChange(e)}/>
+                <label htmlFor={item}>{item}</label>
+              </div>
+            ))
+          }
         </section>
 
       </section>
