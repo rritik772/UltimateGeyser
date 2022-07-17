@@ -16,6 +16,8 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
     const [imgs, setImgs] = useState<FileList>()
     const [featuredProduct, setFeaturedProduct] = useState(product.featuredProduct);
     const [loading, setLoading] = useState(false);
+    const [colors, setColors] = useState<string[]>(product.colors);
+    const [capacity, setCapacity] = useState<string[]>(product.capacity)
 
     const handleImages = (e: any) => {
         setLoading(true);
@@ -55,7 +57,17 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
             return;
         }
 
-        let isProdUpdated = await updateProduct(new ProductModal(name, price, discount, desc, featuredProduct ), product.uid! as string)
+        let isProdUpdated = await updateProduct(
+            new ProductModal(
+                name,
+                price,
+                discount,
+                desc,
+                featuredProduct,
+                colors,
+                capacity,
+                product.uid! as string
+            ), product.uid! as string)
 
         if (isProdUpdated.type) {
             if (imgs && imgs!.length > 0) {
@@ -87,23 +99,32 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
                 <input type="number" className="contactus-input" placeholder='Discount (%)' value={discount} onChange={e => setDiscount(parseFloat(e.target.value))} />
                 <textarea className="contactus-input" placeholder='Description' value={desc} onChange={e => setDesc(e.target.value)} />
 
-                <div className='select-none'>
-                    <input type="checkbox" id="featuredProduct" className='accent-red-500 mr-2' checked={featuredProduct} onChange={() => setFeaturedProduct(!featuredProduct)}/>
+            </section>
+            <section className='flex flex-col gap-3'>
+                <div className=''>
+                    {/* <span>Capacity Available</span> */}
+                    <input type="text" className="contactus-input" placeholder='Capacity Available separate by `,`' value={capacity.join(',')} onChange={(e) => setCapacity(e.target.value.split(','))} />
+                </div>
+                <div className=''>
+                    {/* <span>Colours Available</span> */}
+                    <input type="text" className="contactus-input" placeholder='Colors available separate by `,`' value={colors.join(',')} onChange={(e) => setColors(e.target.value.split(','))} />
+                </div>
+                <div className='select-none py-3 px-1'>
+                    <input type="checkbox" id="featuredProduct" className='accent-red-500 mr-2' checked={featuredProduct} onChange={() => setFeaturedProduct(!featuredProduct)} />
                     <label htmlFor="featuredProduct">Featured Product</label>
                 </div>
-            </section>
-            <section className='flex flex-col gap-2'>
-                <div className='h-full border border-red-500 rounded-lg p-1 text-center flex flex-col'>
-                    {
-                        (imgs && imgs.length > 0) ?
-                            Array.from(imgs).map((img, key) => (
-                                <span key={key}>{img.name.substring(0, 20)}...</span>
-                            )) :
-                            <span>No Images Uploaded</span>
-                    }
-                </div>
+
+                {/* <div className='h-full border border-red-500 rounded-lg p-1 text-center flex flex-col'>
+                        {
+                            (imgs && imgs.length > 0) ?
+                                Array.from(imgs).map((img, key) => (
+                                    <span key={key}>{img.name.substring(0, 20)}...</span>
+                                )) :
+                                <span>No Images Uploaded</span>
+                        }
+                    </div> */}
                 <label htmlFor="imgs" className="btn btn-red-outline cursor-pointer text-center rounded-lg">
-                    <span>Add Images</span>
+                    <span>Add Images ({imgs && imgs.length})</span>
                     <input type="file" accept="image/jpeg" className='hidden' id="imgs" multiple onChange={(e) => handleImages(e)} />
                 </label>
             </section>

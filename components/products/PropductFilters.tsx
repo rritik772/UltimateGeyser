@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { ProductModal } from '../../models/product/product-modal'
+import { getProducts } from '../../utils/firebase/database/productsDatabase'
+import Loading from '../loading/Loading'
 import Products from './Products'
 import products_list from './products.json'
 
 const PropductFilters = () => {
+  const [products, setProducts] = useState<ProductModal[]>([])
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function getAllProduct() {
+      setLoading(true);
+      const response = await getProducts();
+      setProducts(response);
+      setLoading(false);
+    }
+
+    getAllProduct();
+  }, [])
+
+  if (loading)
+    return <Loading />
   return (
     <div className='sm:(grid-cols-1) md:(grid-cols-3) lg:(grid-cols-4) grid justify-items-stretch gap-5 p-5'>
       <section className='place-self-start justify-self-center border p-5 rounded-lg shadow flex flex-col items-center min-w-[20rem] bg-gray-50/50'>
@@ -45,7 +64,7 @@ const PropductFilters = () => {
 
 
       <section className='md:(col-span-2) lg:(col-span-3)'>
-        <Products />
+        {products.length > 0 && <Products products={products} />}
       </section>
     </div>
   )

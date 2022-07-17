@@ -14,6 +14,8 @@ const AddProduct = () => {
     const [imgs, setImgs] = useState<FileList>()
     const [loading, setLoading] = useState(false);
     const [featuredProduct, setFeaturedProduct] = useState(false);
+    const [colors, setColors] = useState<string[]>([]);
+    const [capacity, setCapacity] = useState<string[]>([])
 
     const handleImages = (e: any) => {
         setLoading(true);
@@ -53,9 +55,26 @@ const AddProduct = () => {
         } else if (imgs && imgs.length < 1) {
             toast.error("Please upload atleast one image")
             return;
+        } else if (capacity.length < 1) {
+            toast.error("Please enter atleast one capacity")
+            return;
+        } else if (colors.length < 1) {
+            toast.error("Please enter atleast one color.")
+            return;
         }
 
-        let isProdAdded: ProductErrorModal = await addProducts(new ProductModal(name, price, discount, desc, featuredProduct));
+        let isProdAdded: ProductErrorModal = await addProducts(
+            new ProductModal(
+                name, 
+                price, 
+                discount, 
+                desc, 
+                featuredProduct,
+                colors,
+                capacity,
+                undefined
+            )
+        );
 
         if (isProdAdded.type) {
             let isImageUploaded = await addProductsImages(imgs!, isProdAdded.additional!.uid!);
@@ -72,20 +91,29 @@ const AddProduct = () => {
         <div>
             <AdminNavbar />
 
-            <form className='<md:(grid-cols-1 w-full) md:(grid-cols-2 w-[35rem]) grid bg-gray-100 p-5 shadow mx-auto gap-2 rounded-lg'>
+            <form className='<md:(grid-cols-1 w-full) md:(grid-cols-2 w-[40rem]) grid bg-gray-100 p-5 shadow mx-auto gap-2 rounded-lg'>
                 <section className='flex flex-col gap-3'>
                     <input type="text" className="contactus-input" placeholder='Product Name' value={name} onChange={(e) => setName(e.target.value)} />
                     <input type="number" className="contactus-input" placeholder='Normal Price' value={price} onChange={e => setPrice(parseInt(e.target.value))} />
                     <input type="number" className="contactus-input" placeholder='Discount (%)' value={discount} onChange={e => setDiscount(parseFloat(e.target.value))} />
                     <textarea className="contactus-input" placeholder='Description' value={desc} onChange={e => setDesc(e.target.value)} />
 
-                    <div className='select-none'>
+                </section>
+                <section className='flex flex-col gap-3'>
+                    <div className=''>
+                        {/* <span>Capacity Available</span> */}
+                        <input type="text" className="contactus-input" placeholder='Capacity Available separate by `,`' value={capacity.join(',')} onChange={(e) => setCapacity(e.target.value.split(','))} />
+                    </div>
+                    <div className=''>
+                        {/* <span>Colours Available</span> */}
+                        <input type="text" className="contactus-input" placeholder='Colors available separate by `,`' value={colors.join(',')} onChange={(e) => setColors(e.target.value.split(','))} />
+                    </div>
+                    <div className='select-none py-3 px-1'>
                         <input type="checkbox" id="featuredProduct" className='accent-red-500 mr-2' checked={featuredProduct} onChange={() => setFeaturedProduct(!featuredProduct)} />
                         <label htmlFor="featuredProduct">Featured Product</label>
                     </div>
-                </section>
-                <section className='flex flex-col gap-2'>
-                    <div className='h-full border border-red-500 rounded-lg p-1 text-center flex flex-col'>
+
+                    {/* <div className='h-full border border-red-500 rounded-lg p-1 text-center flex flex-col'>
                         {
                             (imgs && imgs.length > 0) ?
                                 Array.from(imgs).map((img, key) => (
@@ -93,9 +121,9 @@ const AddProduct = () => {
                                 )) :
                                 <span>No Images Uploaded</span>
                         }
-                    </div>
+                    </div> */}
                     <label htmlFor="imgs" className="btn btn-red-outline cursor-pointer text-center rounded-lg">
-                        <span>Add Images</span>
+                        <span>Add Images ({imgs && imgs.length})</span>
                         <input type="file" accept="image/jpeg" className='hidden' id="imgs" multiple onChange={(e) => handleImages(e)} />
                     </label>
                 </section>

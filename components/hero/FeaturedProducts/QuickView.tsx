@@ -12,7 +12,7 @@ const QuickView: FC<QuickViewProps> = ({ images, name, uid, desc, discount, pric
     const [imgidx, setImgidx] = useState(0);
 
     return (
-        <div className='z-10 bg-gray-100/50 p-5 fixed top-0 bottom-0 w-full flex justify-center items-center blur'>
+        <div className='z-10 bg-gray-100/50 p-5 fixed top-0 bottom-0 left-0 w-full flex justify-center items-center blur'>
             <div className='<md:(grid-cols-1) md:(w-[50rem] h-[35rem] grid-cols-2) grid gap-5 border border-red-500 shadow rounded-lg p-5 bg-gray-100'>
 
                 <section className='flex flex-col gap-2 items-center bg-white p-3 rounded-lg border border-red-500'>
@@ -45,11 +45,11 @@ const QuickView: FC<QuickViewProps> = ({ images, name, uid, desc, discount, pric
                     </div>
                     <div className='flex gap-1 flex-col'>
                         <span className='text-gray-500'>Images</span>
-                        <div className='flex gap-2 h-20 overflow-auto w-full'>
+                        <div className='flex flex-wrap gap-2 h-40 w-full h-full overflow-auto'>
                             {
                                 images.length > 0 &&
                                 images.map((item, key) => (
-                                    <img src={item} key={key} className='h-full p-2 cursor-pointer border border-red-500 rounded-lg bg-white' onClick={() => setImgidx(key)} alt={`${name}-${key}`}/>
+                                    <img src={item} key={key} className='h-20 p-2 cursor-pointer border border-red-500 rounded-lg bg-white' onClick={() => setImgidx(key)} alt={`${name}-${key}`}/>
                                 ))
                             }
                         </div>

@@ -14,18 +14,30 @@ import { ProductErrorModal } from "../../../models/error/errorModal";
 import { ProductConverter, ProductModal } from "../../../models/product/product-modal";
 
 export const addProducts = async (product: ProductModal): Promise<ProductErrorModal> => {
-  return await addDoc(collection(database, "products"), product)
+  return await addDoc(collection(database, "products"), {
+    name: product.name,
+    price: product.price,
+    discount: product.discount,
+    desc: product.desc,
+    featuredProduct: product.featuredProduct,
+    colors: product.colors,
+    capacity: product.capacity,
+    uid: "None"
+  })
     .then((doc) => ({type: true, message: "Added Successfully", additional: {uid: doc.id}}))
     .catch(() => ({type: true, message: "Added Successfully"}));
 };
 
 export const updateProduct = async (product: ProductModal, uid: string): Promise<ProductErrorModal> => {
+  console.log(uid)
   return await setDoc(doc(database, "products", uid), {
     name: product.name,
     price: product.price,
     discount: product.discount,
     desc: product.desc,
     featuredProduct: product.featuredProduct,
+    colors: product.colors,
+    capacity: product.capacity,
     uid: uid
   })
     .then(() => ({type: true, message: "Successfully updated"}))

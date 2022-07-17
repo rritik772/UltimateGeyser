@@ -43,7 +43,14 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, im
       }
       <span className='font-bold uppercase my-3'>{name}</span>
       <span className='text-justify text-gray-500 text-sm'>{desc}</span>
-      <span className='mt-5 font-bold font-mono text-2xl'>MRP. <span className='text-red-500'>{price}</span></span>
+
+      <div className='flex flex-col items-center mt-3'>
+        <div className='flex gap-3 items-end'>
+          <span className='text-xl text-red-500 font-bold'>{discount}%</span>
+          <span className='text-2xl font-bold tracking-wide'>Rs. {price - (price * discount / 100)}</span>
+        </div>
+        <small className='line-through font-bold font-mono'>MRP. <span className='text-red-500'>{price}</span></small>
+      </div>
 
       <animated.div className='flex gap-2 mt-5 h-auto' style={spring}>
         <button className='btn btn-red-outline'>Buy Now</button>
@@ -55,7 +62,7 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, im
       }
       {
         quickViewOpen &&
-        <span className="z-30 fixed top-0 right-0 fixed bi bi-x-circle cursor-pointer text-4xl p-3 bg-white hover:text-red-500 rounded-full" onClick={() => setQuickViewOpen(!quickViewOpen)}/>
+        <span className="z-30 fixed top-0 right-0 fixed bi bi-x-circle cursor-pointer text-4xl p-3 bg-white hover:text-red-500 rounded-full" onClick={() => setQuickViewOpen(!quickViewOpen)} />
       }
     </div>
   )
