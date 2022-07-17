@@ -2,7 +2,6 @@ import { FC } from 'react'
 import product_cat from './product_category.json';
 import products from './products.json';
 import states from './States.json';
-import Image from 'next/image';
 import { url } from 'inspector';
 
 const ContactUsForm = () => {

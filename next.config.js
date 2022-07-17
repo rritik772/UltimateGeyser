@@ -1,15 +1,18 @@
 /** @type {import('next').NextConfig} */
 
-const WindiCSSWebpackPlugin = require('windicss-webpack-plugin');
+const WindiCSSWebpackPlugin = require("windicss-webpack-plugin");
 
 const nextConfig = {
   webpack(config) {
-    config.plugins.push(new WindiCSSWebpackPlugin())
-    return config
+    config.plugins.push(new WindiCSSWebpackPlugin());
+    return config;
   },
   reactStrictMode: false,
   swcMinify: true,
-  images: {domains: ['firebasestorage.googleapis.com']},
+  images: {
+    unoptimized: true,
+    domains: ["firebasestorage.googleapis.com"]
+  },
   env: {
     APIKEY: process.env.APIKEY,
     AUTHDOMAIN: process.env.AUTHDOMAIN,
@@ -18,9 +21,8 @@ const nextConfig = {
     STORAGEBUCKET: process.env.STORAGEBUCKET,
     MESSAGINGSENDERID: process.env.MESSAGINGSENDERID,
     APPID: process.env.APPID,
-    MEASUREMENTID: process.env.MEASUREMENTID
-  }
+    MEASUREMENTID: process.env.MEASUREMENTID,
+  },
+};
 
-}
-
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { FC, useEffect, useState } from 'react'
 import { ProductModal } from '../../../models/product/product-modal'
 import { getProductImages } from '../../../utils/firebase/storage/productStorage'

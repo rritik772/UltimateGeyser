@@ -1,5 +1,4 @@
 import { FieldValue } from 'firebase/firestore';
-import Image from 'next/image';
 import { FC, useEffect, useState } from 'react'
 import { useSpring, animated } from 'react-spring';
 import { ProductModal } from '../../models/product/product-modal';

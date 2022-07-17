@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { deleteCarousalImages, updateCarousal } from '../../../utils/firebase/storage/websiteContent';
@@ -49,7 +48,7 @@ const AddCarousalImages = () => {
                 {
                     imgs && imgs.length > 0 && Array.from(imgs).map((item, key) => (
                         <div className='relative h-72 w-72' key={key}>
-                            <Image src={URL.createObjectURL(item)} alt="image" height="100%" width="100%" layout='responsive' />
+                            <img src={URL.createObjectURL(item)} alt="image" />
                         </div>
                     ))
                 }

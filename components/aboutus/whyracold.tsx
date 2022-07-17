@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { FC } from 'react'
 import whyracold from './whyracoldcards.json';
 
@@ -13,7 +12,7 @@ const SingleCard: FC<SingleCardProps> = ({ topic, img, desc }) => {
         <section className='flex flex-col justify-center gap-5 p-5 border shadow <md:w-full md:w-76 rounded-lg'>
             <span className='text-center text-2xl text-red-500 font-bold tracking-wide'>{topic}</span>
             <div className='w-[150px] h-[150px] relative bg-gray-700 self-center rounded-lg overflow-hidden'>
-                <Image alt="topic" src={img} layout='fill' />
+                <img alt="topic" src={img} />
             </div>
             <span className='text-gray-700 text-justify'>
                 {desc}

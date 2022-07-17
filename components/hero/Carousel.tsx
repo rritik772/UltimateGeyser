@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import React, { useEffect, useState, FC, useRef } from 'react'
 
 import { useSpringCarousel } from 'react-spring-carousel'
