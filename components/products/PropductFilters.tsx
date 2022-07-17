@@ -33,7 +33,7 @@ const PropductFilters = () => {
   }, [])
 
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     let p = allProducts.filter(item => {
       if (e.target.checked && item.capacity.includes(e.target.id)) return true
       if (e.target.checked && item.colors.includes(e.target.id)) return true
