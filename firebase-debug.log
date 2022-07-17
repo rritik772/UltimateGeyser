@@ -1,0 +1,21 @@
+[debug] [2022-07-17T15:44:45.570Z] ----------------------------------------------------------------------
+[debug] [2022-07-17T15:44:45.574Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2022-07-17T15:44:45.575Z] CLI Version:   11.2.2
+[debug] [2022-07-17T15:44:45.575Z] Platform:      linux
+[debug] [2022-07-17T15:44:45.576Z] Node Version:  v18.3.0
+[debug] [2022-07-17T15:44:45.577Z] Time:          Sun Jul 17 2022 21:14:45 GMT+0530 (India Standard Time)
+[debug] [2022-07-17T15:44:45.577Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-07-17T15:44:45.692Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-17T15:44:45.693Z] > authorizing via signed-in user (grikenproductions@gmail.com)
+[debug] [2022-07-17T15:44:45.693Z] [iam] checking project willerhot-website for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-07-17T15:44:45.696Z] > refreshing access token with scopes: []
+[debug] [2022-07-17T15:44:45.699Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-07-17T15:44:45.699Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-07-17T15:44:46.378Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2022-07-17T15:44:46.379Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-07-17T15:44:47.241Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/willerhot-website:testIamPermissions [none]
+[debug] [2022-07-17T15:44:47.241Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/willerhot-website:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-07-17T15:44:49.241Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/willerhot-website:testIamPermissions 200
+[debug] [2022-07-17T15:44:49.241Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/willerhot-website:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-07-17T15:44:49.244Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/willerhot-website [none]
