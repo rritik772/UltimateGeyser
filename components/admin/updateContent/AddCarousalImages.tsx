@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
-import { updateCarousal } from '../../../utils/firebase/storage/websiteContent';
+import { deleteCarousalImages, updateCarousal } from '../../../utils/firebase/storage/websiteContent';
 
 const AddCarousalImages = () => {
     const [imgs, setImgs] = useState<FileList>()
@@ -24,13 +24,20 @@ const AddCarousalImages = () => {
         setLoading(false);
     }
     const handleSubmit = async () => {
-        if (imgs && imgs?.length > 0){
-            const isUpdated = await updateCarousal(imgs!);
-            if (isUpdated)
-                toast("Updated carousal images")
-            else
-                toast.error("Cannot update carousal Images")
-        } else 
+        if (imgs && imgs?.length > 0) {
+            toast.info("Deleting Old Images");
+            const isDeleted = await deleteCarousalImages();
+            if (isDeleted) {
+                toast("Deleted Old Images");
+                const isUpdated = await updateCarousal(imgs!);
+                if (isUpdated)
+                    toast("Updated carousal images")
+                else
+                    toast.error("Cannot update carousal Images")
+            } else {
+                    toast.error("Cannot delete old carousal Images")
+            }
+        } else
             toast.info("Please add Images")
 
     }
@@ -40,7 +47,7 @@ const AddCarousalImages = () => {
         <div className='container mx-auto bg-gray-100 shadow rounded-lg p-5 flex flex-col items-start gap-3'>
             <section className='flex gap-2 p-3 border border-red-500 rounded-lg bg-white'>
                 {
-                    imgs && imgs.length> 0 && Array.from(imgs).map((item, key) => (
+                    imgs && imgs.length > 0 && Array.from(imgs).map((item, key) => (
                         <div className='relative h-72 w-72' key={key}>
                             <Image src={URL.createObjectURL(item)} alt="image" height="100%" width="100%" layout='responsive' />
                         </div>
@@ -49,11 +56,11 @@ const AddCarousalImages = () => {
             </section>
             <div className='flex gap-3'>
 
-            <label htmlFor="imgs" className="btn btn-red-outline cursor-pointer text-center rounded-lg">
-                <span>Add Images</span>
-                <input type="file" accept="image/jpeg" className='hidden' id="imgs" multiple onChange={(e) => handleImages(e)} />
-            </label>
-            <button className='btn btn-red-outline' onClick={handleSubmit}>Submit</button>
+                <label htmlFor="imgs" className="btn btn-red-outline cursor-pointer text-center rounded-lg">
+                    <span>Add Images</span>
+                    <input type="file" accept="image/jpeg" className='hidden' id="imgs" multiple onChange={(e) => handleImages(e)} />
+                </label>
+                <button className='btn btn-red-outline' onClick={handleSubmit}>Submit</button>
             </div>
         </div>
     )

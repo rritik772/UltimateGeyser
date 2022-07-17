@@ -7,7 +7,7 @@ const nextConfig = {
     config.plugins.push(new WindiCSSWebpackPlugin())
     return config
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   images: {domains: ['firebasestorage.googleapis.com']},
   env: {

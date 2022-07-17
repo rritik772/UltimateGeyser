@@ -77,6 +77,7 @@ const FeaturedProduct = () => {
     async function getFeaturedProductDetails() {
       setLoading(true);
       const response = await getFeaturedProduct();
+      console.log(response, "featured")
 
       for await (let product of response) {
         const urls = await getProductImages(product.uid as string);

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect, useState, FC } from 'react'
+import React, { useEffect, useState, FC, useRef } from 'react'
 
 import { useSpringCarousel } from 'react-spring-carousel'
 import { getCarousalImages } from '../../utils/firebase/storage/websiteContent';
@@ -9,6 +9,8 @@ interface CarouselProps {
 }
 
 const Carousel: FC<CarouselProps> = ({ imgUrls }) => {
+    const nextRef = useRef<HTMLButtonElement>(null);
+
     const {
         carouselFragment,
         slideToPrevItem,
@@ -25,6 +27,16 @@ const Carousel: FC<CarouselProps> = ({ imgUrls }) => {
         })) as any : defaultItems(),
     });
 
+    useEffect(() => {
+        function clickNextButton() {
+            if (nextRef!.current)
+                nextRef!.current!.click()
+            setTimeout(() => clickNextButton(), 3000);
+        }
+        clickNextButton();
+        console.log("I runned")
+    }, [])
+
     return (
         <div className='relative overflow-hidden'>
             <button onClick={slideToPrevItem} className="z-10 focus:outline-none absolute top-0 bottom-0 my-auto bg-gray-700/50 text-white hover:text-red-500">
@@ -33,7 +45,7 @@ const Carousel: FC<CarouselProps> = ({ imgUrls }) => {
             <div className='<md:(w-screen h-56) md:(w-screen h-screen)'>
                 {carouselFragment}
             </div>
-            <button onClick={slideToNextItem} className="z-10 focus:outline-none absolute top-0 bottom-0 right-0 my-auto bg-gray-700/50 text-white hover:text-red-500">
+            <button onClick={slideToNextItem} ref={nextRef} className="z-10 focus:outline-none absolute top-0 bottom-0 right-0 my-auto bg-gray-700/50 text-white hover:text-red-500">
                 <i className='bi bi-caret-right-square text-4xl p-4'></i>
             </button>
         </div>

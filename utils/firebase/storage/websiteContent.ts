@@ -1,4 +1,5 @@
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { FirebaseError } from "firebase/app";
+import { ref, uploadBytes, listAll, getDownloadURL, deleteObject } from "firebase/storage";
 import { storage } from "../../../firebase";
 
 export const updateCarousal = async (imgs: FileList) => {
@@ -17,6 +18,18 @@ export const updateCarousal = async (imgs: FileList) => {
   }
 
   return true;
+}
+
+export const deleteCarousalImages = async (): Promise<boolean> => {
+  const toBeDeletedRef = ref(storage, `carousal`)
+  return await deleteObject(toBeDeletedRef)
+    .then(() => true)
+    .catch((e: FirebaseError) => {
+      if (e.code === 'storage/object-not-found') {
+        return true;
+      }
+      return false;
+    })
 }
 
 export const getCarousalImages = async (): Promise<string[]> => {
