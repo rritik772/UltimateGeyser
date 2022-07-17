@@ -29,7 +29,7 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, co
       setImgUrls(urls);
     }
     getImageUrls();
-  }, [])
+  }, [uid])
 
   const spring = useSpring({
     to: {
