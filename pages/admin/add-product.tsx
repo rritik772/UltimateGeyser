@@ -5,6 +5,8 @@ import { addProducts } from '../../utils/firebase/database/productsDatabase';
 import { addProductsImages } from '../../utils/firebase/storage/productStorage';
 import { ProductModal } from '../../models/product/product-modal';
 import { ProductErrorModal } from '../../models/error/errorModal';
+import { getFromLocalStorage, login } from '../../utils/firebase/database/adminAuth';
+import { useRouter } from 'next/router';
 
 const AddProduct = () => {
     const [name, setName] = useState('');
@@ -16,6 +18,7 @@ const AddProduct = () => {
     const [featuredProduct, setFeaturedProduct] = useState(false);
     const [colors, setColors] = useState<string[]>([]);
     const [capacity, setCapacity] = useState<string[]>([])
+    const [loginLoading, setLoginLoading] = useState(false);
 
     const handleImages = (e: any) => {
         setLoading(true);
@@ -65,10 +68,10 @@ const AddProduct = () => {
 
         let isProdAdded: ProductErrorModal = await addProducts(
             new ProductModal(
-                name, 
-                price, 
-                discount, 
-                desc, 
+                name,
+                price,
+                discount,
+                desc,
                 featuredProduct,
                 colors,
                 capacity,
@@ -87,11 +90,29 @@ const AddProduct = () => {
         setLoading(false);
     }
 
+    const router = useRouter()
+
+    useEffect(() => {
+        async function loginUser() {
+            setLoginLoading(true);
+
+            let json = getFromLocalStorage();
+            let loggedIn = await login(json.username, Buffer.from(json.password, 'base64').toString('ascii'));
+            console.log(loggedIn)
+            if (!loggedIn) {
+                router.push('/admin/login')
+            }
+
+            setLoginLoading(false);
+        }
+        loginUser();
+    }, [])
+
     return (
         <div>
             <AdminNavbar />
 
-            <form className='<md:(grid-cols-1 w-full) md:(grid-cols-2 w-[40rem]) grid bg-gray-100 p-5 shadow mx-auto gap-2 rounded-lg'>
+            {!loginLoading && <form className='<md:(grid-cols-1 w-full) md:(grid-cols-2 w-[40rem]) grid bg-gray-100 p-5 shadow mx-auto gap-2 rounded-lg'>
                 <section className='flex flex-col gap-3'>
                     <input type="text" className="contactus-input" placeholder='Product Name' value={name} onChange={(e) => setName(e.target.value)} />
                     <input type="number" className="contactus-input" placeholder='Normal Price' value={price} onChange={e => setPrice(parseInt(e.target.value))} />
@@ -134,7 +155,7 @@ const AddProduct = () => {
                             Submit
                         </button>
                 }
-            </form>
+            </form> }
         </div>
     )
 }
