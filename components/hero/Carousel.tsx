@@ -38,14 +38,14 @@ const Carousel: FC<CarouselProps> = ({ imgUrls }) => {
 
     return (
         <div className='relative overflow-hidden'>
-            <button onClick={slideToPrevItem} className="z-10 focus:outline-none absolute top-0 bottom-0 my-auto bg-gray-700/50 text-white hover:text-red-500">
-                <i className='bi bi-caret-left-square text-4xl p-4'></i>
+            <button onClick={slideToPrevItem} className="z-10 focus:outline-none absolute top-0 bottom-0 my-auto text-white hover:text-red-500">
+                <i className='bi bi-caret-left-fill text-4xl p-4'></i>
             </button>
             <div className='<md:(w-screen h-56) md:(w-screen h-screen)'>
                 {carouselFragment}
             </div>
-            <button onClick={slideToNextItem} ref={nextRef} className="z-10 focus:outline-none absolute top-0 bottom-0 right-0 my-auto bg-gray-700/50 text-white hover:text-red-500">
-                <i className='bi bi-caret-right-square text-4xl p-4'></i>
+            <button onClick={slideToNextItem} ref={nextRef} className="z-10 focus:outline-none absolute top-0 bottom-0 right-0 my-auto text-white hover:text-red-500">
+                <i className='bi bi-caret-right-fill text-4xl p-4'></i>
             </button>
         </div>
     );

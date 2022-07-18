@@ -13,10 +13,10 @@ function Navbar() {
     }, [])
 
     return (
-        <nav className="<lg:(flex-col items-start gap-10) lg:(flex-row justify-between) flex select-none px-2 mb-3 bg-white">
+        <nav className="<lg:(flex-col items-start gap-10) lg:(flex-row justify-between) flex select-none bg-white">
             <section className="<lg:(flex-col) lg:(flex-row) flex items-center">
 
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-4 items-center pl-2">
                     <i className="lg:(hidden) bi bi-list text-3xl" onClick={() => setOpen(!open)}></i>
                     <Link href="/">
                         <a>

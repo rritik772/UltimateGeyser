@@ -63,7 +63,7 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, co
           <span className='text-xl text-red-500 font-bold'>{discount}%</span>
           <span className='text-2xl font-bold tracking-wide'>Rs. {price - (price * discount / 100)}</span>
         </div>
-        <small className='line-through font-bold font-mono'>MRP. <span className='text-red-500'>{price}</span></small>
+        <small className='line-through font-bold font-mono text-lg'>MRP. <span className='text-red-500'>{price}</span></small>
       </div>
 
       <animated.div className='flex gap-2' style={spring}>
@@ -72,11 +72,7 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, co
       </animated.div>
       {
         quickViewOpen &&
-        <QuickView images={imgUrls} name={name} desc={desc} price={price} discount={discount} uid={uid as string} colors={colors} capacity={capacity} />
-      }
-      {
-        quickViewOpen &&
-        <span className="z-30 fixed top-0 right-0 fixed bi bi-x-circle cursor-pointer text-4xl p-3 bg-white hover:text-red-500 rounded-full" onClick={() => setQuickViewOpen(!quickViewOpen)} />
+        <QuickView images={imgUrls} name={name} desc={desc} price={price} discount={discount} uid={uid as string} colors={colors} capacity={capacity} setIsOpen={(e) => setQuickViewOpen(e)}/>
       }
     </div>
   )

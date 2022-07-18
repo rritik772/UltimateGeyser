@@ -1,39 +1,10 @@
 [
     {
-        "topic": "GEYSERS",
-        "links": [
-            {
-                "value": "Electric Instant Heater",
-                "endpoint": "/products?category=Electric Instant Heater"
-            },
-            {
-                "value": "Electric Storage Geyser",
-                "endpoint":"/products?category=Electric Storage Geyser"
-            },
-            {
-                "value": "Online Instantaneous",
-                "endpoint":"/products?category=Online Instantaneous"
-            },
-            {
-                "value": "Gas Geysers",
-                "endpoint":"/products?category=Gas Geysers"
-            },
-            {
-                "value": "Solar Geysers",
-                "endpoint":"/products?category=Solar Geysers"
-            },
-            {
-                "value": "Heat Pump Geysers",
-                "endpoint": "/products?category=Heat Pump Geysers"
-            }
-        ]
-    },
-    {
         "topic": "support",
         "links": [
             {
-                "value": "Product Enquiry",
-                "endpoint": "/#mailtous"
+                "value": "Products",
+                "endpoint": "/products"
             },
             {
                 "value": "Call Us",
@@ -59,6 +30,15 @@
             {
                 "value": "Youtube",
                 "endpoint": "/aboutus#youtube"
+            }
+        ]
+    },
+    {
+        "topic": "For Business",
+        "links": [
+            {
+                "value": "Contact Us",
+                "endpoint": "/contactus"
             }
         ]
     }
