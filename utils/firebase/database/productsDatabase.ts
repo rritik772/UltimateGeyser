@@ -48,8 +48,9 @@ export const updateProduct = async (product: ProductModal, uid: string): Promise
 }
 
 export const deleteProduct = async (uid: string): Promise<boolean> => {
-  return await deleteDoc(doc(database, 'product', uid))
-  .then(() => true)
+  console.log(uid)
+  return await deleteDoc(doc(database, 'products', uid))
+  .then((a) => {console.log(a); return true})
   .catch(() => false);
 }
 

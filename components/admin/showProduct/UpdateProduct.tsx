@@ -95,7 +95,8 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
         setLoading(false);
     }
 
-    const handleDelete = async () => {
+    const handleDelete = async (e: any) => {
+        e.preventDefault();
         const isDeleted = await deleteProduct(product.uid as string);
         if  (isDeleted)
             toast("Deleted successfully");
