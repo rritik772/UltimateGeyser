@@ -20,7 +20,7 @@ function Navbar() {
                     <i className="lg:(hidden) bi bi-list text-3xl" onClick={() => setOpen(!open)}></i>
                     <Link href="/">
                         <a>
-                            <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-4 px-5 text-xl tracking-widest uppercase rounded-lg cursor-pointer rubik font-black">WillerHot</button>
+                            <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-3 px-4 text-xl tracking-widest uppercase rounded-lg cursor-pointer rubik font-black"><img src="/assets/images/logo/logo.jpeg" className='w-36' /></button>
                         </a>
                     </Link>
                 </div>
@@ -58,14 +58,14 @@ function Navbar() {
                         Call Us
                     </span></a>
 
-                    <label htmlFor="search-item" className="relative">
+                    {/* <label htmlFor="search-item" className="relative">
                         <input
                             id="search-item"
                             type="text"
                             className="@sm:(w-full) md:(w-36) text-black p-2 focus:outline-none rounded "
                         />
                         <button className="bi bi-search absolute px-4 py-2 right-0 rounded bg-gray-700 hover:text-red-500"></button>
-                    </label>
+                    </label> */}
                 </div>
             }
         </nav>

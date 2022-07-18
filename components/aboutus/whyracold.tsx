@@ -26,7 +26,7 @@ const WhyRacold = () => {
         <div className='my-10'>
             <section className='flex flex-col items-center p-5'>
                 <span className='font-bold uppercase tracking-wide text-4xl text-red-500 underline-black' id="why-racold">Why racold?</span>
-                <span className='mt-5 font-xl uppercase tracking-widest text-center'>Racold Geysers are equipped with path-breaking technologies in water heating</span>
+                <span className='mt-5 font-xl uppercase tracking-widest text-center'>WillerHot Geysers are equipped with path-breaking technologies in water heating</span>
             </section>
             <section className='mt-10 flex flex-wrap justify-center gap-5 p-5'>
                 {

@@ -63,6 +63,7 @@ const ProductFilters: FC<ProductFilters> = ({ categoryFilter }) => {
     })
 
     if (p.length === 0) p = allProducts;
+     p = Array.from(new Set(p))
     setProducts(p);
   }, [filterMap])
 

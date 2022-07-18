@@ -1,4 +1,4 @@
-import { collection, getDoc, getDocs, where, query } from "firebase/firestore"
+import { collection, getDoc, getDocs, doc, where, query, addDoc } from "firebase/firestore"
 import { database } from "../../../firebase"
 import { sha256 } from 'js-sha256';
 
@@ -31,4 +31,18 @@ export const getFromLocalStorage = () => {
     const local = Buffer.from(localS, 'base64').toString('ascii');
     const json = JSON.parse(local);
     return json;
+}
+
+export const submitQuery = async (name: string, phone: string, email: string, geaserCat: string, company: string, state: string, query: string) => {
+    return await addDoc(collection(database, "queries"), {
+        name: name,
+        phone: phone,
+        email: email,
+        company: company,
+        geyserCat: geaserCat,
+        state: state,
+        query: query
+    })
+    .then(() => true)
+    .catch(() => false)
 }

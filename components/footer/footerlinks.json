@@ -33,7 +33,15 @@
         "links": [
             {
                 "value": "Product Enquiry",
-                "endpoint": "/product"
+                "endpoint": "/#mailtous"
+            },
+            {
+                "value": "Call Us",
+                "endpoint": "/#telephone"
+            },
+            {
+                "value": "Problem?",
+                "endpoint": "/#customermail"
             }
         ]
     },
@@ -49,21 +57,8 @@
                 "endpoint": "/aboutus#why-racold"
             },
             {
-                "value": "Awards",
-                "endpoint": "/awards"
-            },
-            {
                 "value": "Youtube",
-                "endpoint": "/aboutus"
-            }
-        ]
-    },
-    {
-        "topic": "For bussiness",
-        "links": [
-            {
-                "value": "View projects",
-                "endpoint": "view-projects"
+                "endpoint": "/aboutus#youtube"
             }
         ]
     }

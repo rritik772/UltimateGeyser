@@ -31,17 +31,17 @@ const AdminNavbar = () => {
                 {/* <i className="lg:(hidden) bi bi-list text-3xl" onClick={() => { }}></i> */}
                 <Link href="/">
                     <a>
-                        <button className="racold-button">WillerHot</button>
+                        <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-3 px-4 text-xl tracking-widest uppercase rounded-lg cursor-pointer rubik font-black"><img src="/assets/images/logo/logo.jpeg" className='w-36' /></button>
                     </a>
                 </Link>
             </div>
 
             <section className='<md:(flex-col ml-3 mb-3) md:(flex-row) flex gap-3 mr-5'>
-                <AdminNavLink current={router.asPath} value="Customer Site" endpoint='/' icon='shop-window'/>
-                <AdminNavLink current={router.asPath} value="Login" endpoint='/admin/login' icon="box-arrow-in-right"/>
-                <AdminNavLink current={router.asPath} value="Add Product" endpoint='/admin/add-product' icon="plus-square"/>
-                <AdminNavLink current={router.asPath} value="Show Products" endpoint='/admin/show-products' icon="view-list"/>
-                <AdminNavLink current={router.asPath} value="Update Content" endpoint='/admin/update-content' icon="brush"/>
+                <AdminNavLink current={router.asPath} value="Customer Site" endpoint='/' icon='shop-window' />
+                <AdminNavLink current={router.asPath} value="Login" endpoint='/admin/login' icon="box-arrow-in-right" />
+                <AdminNavLink current={router.asPath} value="Add Product" endpoint='/admin/add-product' icon="plus-square" />
+                <AdminNavLink current={router.asPath} value="Show Products" endpoint='/admin/show-products' icon="view-list" />
+                <AdminNavLink current={router.asPath} value="Update Content" endpoint='/admin/update-content' icon="brush" />
             </section>
         </nav>
     )
