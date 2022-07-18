@@ -9,6 +9,7 @@ export class ProductModal {
     uid: string | undefined | FieldValue
     colors: string[]
     capacity: string[]
+    category: string
 
     constructor(
         name: string, 
@@ -18,6 +19,7 @@ export class ProductModal {
         featuredProduct: boolean, 
         colors: string[], 
         capacity: string[], 
+        category: string,
         uid: string | undefined
     ) {
         this.name = name;
@@ -27,6 +29,7 @@ export class ProductModal {
         this.featuredProduct = featuredProduct;
         this.colors = colors;
         this.capacity = capacity;
+        this.category = category;
         this.uid = uid;
     }
 }
@@ -41,6 +44,7 @@ export const ProductConverter = {
             featuredProduct: prod.featuredProduct,
             colors: prod.colors,
             capacity: prod.capacity,
+            category: prod.category,
             uid: undefined
         }
     },
@@ -54,6 +58,7 @@ export const ProductConverter = {
             featuredProduct: data.featuredProduct,
             colors: data.colors,
             capacity: data.capacity,
+            category: data.category,
             uid: snapshot.id as string
         }
     }

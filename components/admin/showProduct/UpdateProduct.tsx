@@ -1,7 +1,8 @@
 import React, { useState, FC } from 'react'
 import { toast } from 'react-toastify';
+import { database } from '../../../firebase';
 import { ProductModal } from '../../../models/product/product-modal';
-import { updateProduct } from '../../../utils/firebase/database/productsDatabase';
+import { deleteProduct, updateProduct } from '../../../utils/firebase/database/productsDatabase';
 import { addProductsImages, deleteImages } from '../../../utils/firebase/storage/productStorage';
 
 interface UpdateProductProps {
@@ -17,6 +18,7 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
     const [featuredProduct, setFeaturedProduct] = useState(product.featuredProduct);
     const [loading, setLoading] = useState(false);
     const [colors, setColors] = useState<string[]>(product.colors);
+    const [category, setCategory] = useState<string>(product.category);
     const [capacity, setCapacity] = useState<string[]>(product.capacity)
 
     const handleImages = (e: any) => {
@@ -66,6 +68,7 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
                 featuredProduct,
                 colors,
                 capacity,
+                category,
                 product.uid! as string
             ), product.uid! as string)
 
@@ -91,8 +94,17 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
 
         setLoading(false);
     }
+
+    const handleDelete = async () => {
+        const isDeleted = await deleteProduct(product.uid as string);
+        if  (isDeleted)
+            toast("Deleted successfully");
+        else
+            toast.error('Cannot delete document');
+    }
+
     return (
-        <form className='<md:(grid-cols-1 w-full) md:(grid-cols-2 w-[35rem]) grid bg-gray-100 p-5 shadow mx-auto gap-2 rounded-lg mt-3'>
+        <form className='<md:(grid-cols-1 w-full) md:(grid-cols-2 w-[35rem]) grid bg-gray-100 p-5 shadow mx-auto gap-2 rounded-lg my-3'>
             <section className='flex flex-col gap-3'>
                 <input type="text" className="contactus-input" placeholder='Product Name' value={name} onChange={(e) => setName(e.target.value)} />
                 <input type="number" className="contactus-input" placeholder='Normal Price' value={price} onChange={e => setPrice(parseInt(e.target.value))} />
@@ -109,9 +121,20 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
                     {/* <span>Colours Available</span> */}
                     <input type="text" className="contactus-input" placeholder='Colors available separate by `,`' value={colors.join(',')} onChange={(e) => setColors(e.target.value.split(','))} />
                 </div>
+                    <div className='select-none px-1 flex flex-col'>
+                        <input type="text" className='contactus-input' list="category" placeholder='Select Geyser Category' value={category} onChange={e => setCategory(e.target.value)} />
+                        <datalist id="category">
+                            <option value="Electric Instant Heater">Electric Instant Heater</option>
+                            <option value="Electric Storage Geyser">Electric Storage Geyser</option>
+                            <option value="Online Instantaneous">Online Instantaneous</option>
+                            <option value="Gas Geysers">Gas Geysers</option>
+                            <option value="Solar Geysers">Solar Geysers</option>
+                            <option value="Heat Pump Geysers">Heat Pump Geysers</option>
+                        </datalist>
+                    </div>
                 <div className='select-none py-3 px-1'>
-                    <input type="checkbox" id="featuredProduct" className='accent-red-500 mr-2' checked={featuredProduct} onChange={() => setFeaturedProduct(!featuredProduct)} />
-                    <label htmlFor="featuredProduct">Featured Product</label>
+                    <input type="checkbox" id={`featuredProduct-${name}`} className='accent-red-500 mr-2' checked={featuredProduct} onChange={() => setFeaturedProduct(!featuredProduct)} />
+                    <label htmlFor={`featuredProduct-${name}`}>Featured Product</label>
                 </div>
 
                 {/* <div className='h-full border border-red-500 rounded-lg p-1 text-center flex flex-col'>
@@ -123,17 +146,22 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
                                 <span>No Images Uploaded</span>
                         }
                     </div> */}
-                <label htmlFor="imgs" className="btn btn-red-outline cursor-pointer text-center rounded-lg">
-                    <span>Add Images ({imgs && imgs.length})</span>
-                    <input type="file" accept="image/jpeg" className='hidden' id="imgs" multiple onChange={(e) => handleImages(e)} />
-                </label>
             </section>
             {
                 loading ?
                     <i className='bi bi-arrow-clockwise animate-spin col-span-2 justify-self-center text-4xl mt-3 text-red-500' /> :
-                    <button className='btn btn-red-outline col-span-2 mt-3' onClick={handleSubmit} disabled={loading}>
-                        Submit
-                    </button>
+                    <div className='flex col-span-2 gap-2 mt-3'>
+                        <label htmlFor="imgs" className="w-full btn btn-red-outline cursor-pointer text-center rounded-lg">
+                            <span>Add Images ({imgs && imgs.length})</span>
+                            <input type="file" accept="image/jpeg" className='hidden' id="imgs" multiple onChange={(e) => handleImages(e)} />
+                        </label>
+                        <button className='w-full btn btn-red' onClick={handleDelete} disabled={loading}>
+                            Delete
+                        </button>
+                        <button className='w-full btn btn-red-outline' onClick={handleSubmit} disabled={loading}>
+                            Submit
+                        </button>
+                    </div>
             }
         </form>
 

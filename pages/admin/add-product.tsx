@@ -18,6 +18,7 @@ const AddProduct = () => {
     const [featuredProduct, setFeaturedProduct] = useState(false);
     const [colors, setColors] = useState<string[]>([]);
     const [capacity, setCapacity] = useState<string[]>([])
+    const [category, setCategory] = useState<string>('');
     const [loginLoading, setLoginLoading] = useState(false);
 
     const handleImages = (e: any) => {
@@ -75,6 +76,7 @@ const AddProduct = () => {
                 featuredProduct,
                 colors,
                 capacity,
+                category,
                 undefined
             )
         );
@@ -97,14 +99,12 @@ const AddProduct = () => {
             setLoginLoading(true);
 
             let json = getFromLocalStorage();
-            console.log(json.password)
             if (!json.password) {
                 router.push('/admin/login')
                 return;
             }
 
             let loggedIn = await login(json.username, Buffer.from(json.password, 'base64').toString('ascii'));
-            console.log(loggedIn)
             if (!loggedIn) {
                 router.push('/admin/login')
             }
@@ -135,9 +135,21 @@ const AddProduct = () => {
                         {/* <span>Colours Available</span> */}
                         <input type="text" className="contactus-input" placeholder='Colors available separate by `,`' value={colors.join(',')} onChange={(e) => setColors(e.target.value.split(','))} />
                     </div>
+                    <div className='select-none px-1 flex flex-col'>
+                        <input type="text" className='contactus-input' list="category" placeholder='Select Geyser Category' value={category} onChange={e => setCategory(e.target.value)} />
+                        <datalist id="category">
+                            <option value="Electric Instant Heater">Electric Instant Heater</option>
+                            <option value="Electric Storage Geyser">Electric Storage Geyser</option>
+                            <option value="Online Instantaneous">Online Instantaneous</option>
+                            <option value="Gas Geysers">Gas Geysers</option>
+                            <option value="Solar Geysers">Solar Geysers</option>
+                            <option value="Heat Pump Geysers">Heat Pump Geysers</option>
+                            <option value="Find Your Geyser">Find Your Geyser</option>
+                        </datalist>
+                    </div>
                     <div className='select-none py-3 px-1'>
-                        <input type="checkbox" id="featuredProduct" className='accent-red-500 mr-2' checked={featuredProduct} onChange={() => setFeaturedProduct(!featuredProduct)} />
-                        <label htmlFor="featuredProduct">Featured Product</label>
+                        <input type="checkbox" id={`featuredProduct-${name}`} className='accent-red-500 mr-2' checked={featuredProduct} onChange={() => setFeaturedProduct(!featuredProduct)} />
+                        <label htmlFor={`featuredProduct-${name}`}>Featured Product</label>
                     </div>
 
                     {/* <div className='h-full border border-red-500 rounded-lg p-1 text-center flex flex-col'>
@@ -149,19 +161,21 @@ const AddProduct = () => {
                                 <span>No Images Uploaded</span>
                         }
                     </div> */}
-                    <label htmlFor="imgs" className="btn btn-red-outline cursor-pointer text-center rounded-lg">
-                        <span>Add Images ({imgs && imgs.length})</span>
-                        <input type="file" accept="image/jpeg" className='hidden' id="imgs" multiple onChange={(e) => handleImages(e)} />
-                    </label>
                 </section>
                 {
                     loading ?
                         <i className='bi bi-arrow-clockwise animate-spin col-span-2 justify-self-center text-4xl mt-3 text-red-500' /> :
-                        <button className='btn btn-red-outline col-span-2 mt-3' onClick={handleSubmit} disabled={loading}>
-                            Submit
-                        </button>
+                        <div className='flex gap-3 col-span-2 mt-3'>
+                            <button className='btn btn-red-outline w-full' onClick={handleSubmit} disabled={loading}>
+                                Submit
+                            </button>
+                            <label htmlFor="imgs" className="w-full btn btn-red-outline cursor-pointer text-center rounded-lg">
+                                <span>Add Images ({imgs && imgs.length})</span>
+                                <input type="file" accept="image/jpeg" className='hidden' id="imgs" multiple onChange={(e) => handleImages(e)} />
+                            </label>
+                        </div>
                 }
-            </form> }
+            </form>}
         </div>
     )
 }

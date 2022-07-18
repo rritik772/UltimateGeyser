@@ -8,6 +8,7 @@ import {
   addDoc,
   where,
   DocumentSnapshot,
+  deleteDoc,
 } from "firebase/firestore";
 import { database } from "../../../firebase";
 import { ProductErrorModal } from "../../../models/error/errorModal";
@@ -22,6 +23,7 @@ export const addProducts = async (product: ProductModal): Promise<ProductErrorMo
     featuredProduct: product.featuredProduct,
     colors: product.colors,
     capacity: product.capacity,
+    category: product.category,
     uid: "None"
   })
     .then((doc) => ({type: true, message: "Added Successfully", additional: {uid: doc.id}}))
@@ -38,14 +40,25 @@ export const updateProduct = async (product: ProductModal, uid: string): Promise
     featuredProduct: product.featuredProduct,
     colors: product.colors,
     capacity: product.capacity,
+    category: product.category,
     uid: uid
   })
     .then(() => ({type: true, message: "Successfully updated"}))
     .catch(() => ({type: true, message: "Cannot update."}))
 }
 
-export const getProducts = async (): Promise<ProductModal[]> => {
-  return await getDocs(query(collection(database, "products").withConverter(ProductConverter)))
+export const deleteProduct = async (uid: string): Promise<boolean> => {
+  return await deleteDoc(doc(database, 'product', uid))
+  .then(() => true)
+  .catch(() => false);
+}
+
+export const getProducts = async (category?: string): Promise<ProductModal[]> => {
+  let q = query(collection(database, "products").withConverter(ProductConverter));
+  if (category)
+    q = query(collection(database, "products").withConverter(ProductConverter), where("category", "==", category))
+
+  return await getDocs(q)
     .then((docs) => {
       let result: ProductModal[] = [];
 

@@ -4,11 +4,27 @@
         "links": [
             {
                 "value": "Electric Instant Heater",
-                "endpoint": "/electrict-instant-heater"
+                "endpoint": "/products?category=Electric Instant Heater"
             },
             {
                 "value": "Electric Storage Geyser",
-                "endpoint": "/electric storage"
+                "endpoint":"/products?category=Electric Storage Geyser"
+            },
+            {
+                "value": "Online Instantaneous",
+                "endpoint":"/products?category=Online Instantaneous"
+            },
+            {
+                "value": "Gas Geysers",
+                "endpoint":"/products?category=Gas Geysers"
+            },
+            {
+                "value": "Solar Geysers",
+                "endpoint":"/products?category=Solar Geysers"
+            },
+            {
+                "value": "Heat Pump Geysers",
+                "endpoint": "/products?category=Heat Pump Geysers"
             }
         ]
     },
@@ -29,7 +45,7 @@
                 "endpoint": "/aboutus#who-are-we"
             },
             {
-                "value": "Why Racold",
+                "value": "Why WillerHot",
                 "endpoint": "/aboutus#why-racold"
             },
             {

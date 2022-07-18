@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <div className='bg-gray-100 py-10'>
             <div className='<md:(px-5) container mx-auto flex flex-col'>
-                <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-4 px-5 text-xl tracking-widest uppercase rounded-lg cursor-pointer rubik font-black self-start">Racold</button>
+                <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-4 px-5 text-xl tracking-widest uppercase rounded-lg cursor-pointer rubik font-black self-start">WillerHot</button>
                 <section className='<md:(flex-col) md:(flex-row) flex gap-5 justify-evenly my-10'>
                     {
                         footlinks.map((item, key) => (
@@ -64,7 +64,7 @@ const Footer = () => {
                         </Link>
                     </div>
                 </section>
-                <span className='self-end mt-5 text-gray-700'>All rights reserved by Someone Mags India Private Limited</span>
+                <span className='self-end mt-5 text-gray-700'>All rights reserved by WillerHot Private Limited</span>
                 <span className='self-end text-gray-700'>Made with <i className='bi bi-heart-fill text-red-500'/> by  <a href="https://www.griiken.com" className='font-bold text-red-500'>Griiken</a>.</span>
             </div>
         </div>

@@ -20,7 +20,7 @@ function Navbar() {
                     <i className="lg:(hidden) bi bi-list text-3xl" onClick={() => setOpen(!open)}></i>
                     <Link href="/">
                         <a>
-                            <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-4 px-5 text-xl tracking-widest uppercase rounded-lg cursor-pointer rubik font-black">Racold</button>
+                            <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-4 px-5 text-xl tracking-widest uppercase rounded-lg cursor-pointer rubik font-black">WillerHot</button>
                         </a>
                     </Link>
                 </div>

@@ -31,7 +31,7 @@ const AdminNavbar = () => {
                 {/* <i className="lg:(hidden) bi bi-list text-3xl" onClick={() => { }}></i> */}
                 <Link href="/">
                     <a>
-                        <button className="racold-button">Racold</button>
+                        <button className="racold-button">WillerHot</button>
                     </a>
                 </Link>
             </div>

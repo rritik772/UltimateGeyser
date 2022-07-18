@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, FC } from 'react'
 import { getCapacity } from '../../lib/Capacity'
 import { getColors } from '../../lib/Colors'
 import { ProductModal } from '../../models/product/product-modal'
@@ -6,7 +6,12 @@ import { getProducts } from '../../utils/firebase/database/productsDatabase'
 import Loading from '../loading/Loading'
 import Products from './Products'
 
-const PropductFilters = () => {
+interface ProductFilters {
+  categoryFilter: string
+}
+
+const ProductFilters: FC<ProductFilters> = ({ categoryFilter }) => {
+  console.log(categoryFilter)
   const [allProducts, setAllProducts] = useState<ProductModal[]>([])
   const [products, setProducts] = useState<ProductModal[]>([])
   const [loading, setLoading] = useState(false);
@@ -26,7 +31,7 @@ const PropductFilters = () => {
   useEffect(() => {
     async function getAllProduct() {
       setLoading(true);
-      const response = await getProducts();
+      const response = await getProducts(categoryFilter);
       const aColors = getCapacity(response);
       const aCapacity = getColors(response);
 
@@ -40,13 +45,12 @@ const PropductFilters = () => {
     }
 
     getAllProduct();
-  }, [])
+  }, [categoryFilter])
 
 
   useEffect(() => {
     let allTrues: string[] = [];
     filterMap.forEach((key, value) => {
-      console.log(value)
       if (key === true) allTrues.push(value)
     })
 
@@ -115,4 +119,4 @@ const PropductFilters = () => {
   )
 }
 
-export default PropductFilters
+export default ProductFilters

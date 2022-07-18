@@ -1,13 +1,15 @@
+import { useRouter } from 'next/router'
 import React from 'react'
 import Footer from '../components/footer/Footer'
 import Navbar from '../components/navbar/Navbar'
-import PropductFilters from '../components/products/PropductFilters'
+import ProductFilters from '../components/products/PropductFilters'
 
 const Products = () => {
+  const router = useRouter();
   return (
     <div className='pb-20'>
         <Navbar />
-        <PropductFilters />
+        <ProductFilters categoryFilter={(router.query.category)?(router.query.category as string):''}/>
         <Footer />
     </div>
   )
