@@ -41,40 +41,43 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, co
   });
 
   return (
-    <div
-      className='border rounded-lg shadow p-5 flex flex-col gap-5 items-center w-[300px] bg-gray-50/50'
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      {
-        !loading && imgUrls.length > 0 ?
-          <div className=''>
-            <img alt={name} src={imgUrls[0]} className='h-44'/>
-          </div> :
-          <i className='bi bi-arrow-clockwise animate-spin text-4xl' />
-      }
-      {
-        !loading && imgUrls.length == 0 && <i className='bi bi-image text-red-500' />
-      }
-      <span className='text-center text-red-500 font-black text-xl tracking-wide'>{name}</span>
-      <span className='text-center text-sm text-gray-600'>{desc.substring(0, 30)}...</span>
-      <div className='flex flex-col items-center'>
-        <div className='flex gap-3 items-end'>
-          <span className='text-xl text-red-500 font-bold'>{discount}%</span>
-          <span className='text-2xl font-bold tracking-wide'>Rs. {price - (price * discount / 100)}</span>
+    <>
+      <div
+        className='border rounded-lg shadow p-5 flex flex-col gap-5 items-center w-[300px] bg-gray-50/50 select-none cursor-pointer'
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+        onClick={() => setQuickViewOpen(true)}
+      >
+        {
+          !loading && imgUrls.length > 0 ?
+            <div className=''>
+              <img alt={name} src={imgUrls[0]} className='h-44' />
+            </div> :
+            <i className='bi bi-arrow-clockwise animate-spin text-4xl' />
+        }
+        {
+          !loading && imgUrls.length == 0 && <i className='bi bi-image text-red-500' />
+        }
+        <span className='text-center text-red-500 font-black text-xl tracking-wide'>{name}</span>
+        <span className='text-center text-sm text-gray-600'>{desc.substring(0, 30)}...</span>
+        <div className='flex flex-col items-center'>
+          <div className='flex gap-3 items-end'>
+            <span className='text-xl text-red-500 font-bold'>{discount}%</span>
+            <span className='text-2xl font-bold tracking-wide'>Rs. {price - (price * discount / 100)}</span>
+          </div>
+          <small className='line-through font-bold font-mono text-lg'>MRP. <span className='text-red-500'>{price}</span></small>
         </div>
-        <small className='line-through font-bold font-mono text-lg'>MRP. <span className='text-red-500'>{price}</span></small>
-      </div>
 
-      <animated.div className='flex gap-2' style={spring}>
-        <button className='btn btn-red'>Buy Now</button>
-        <button className='btn btn-red-outline' onClick={() => setQuickViewOpen(!quickViewOpen)}>Quick View</button>
-      </animated.div>
+        <animated.div className='flex gap-2' style={spring}>
+          <button className='btn btn-red'>Buy Now</button>
+          <button className='btn btn-red-outline' onClick={() => setQuickViewOpen(!quickViewOpen)}>Quick View</button>
+        </animated.div>
+      </div>
       {
         quickViewOpen &&
-        <QuickView images={imgUrls} name={name} desc={desc} price={price} discount={discount} uid={uid as string} colors={colors} capacity={capacity} setIsOpen={(e) => setQuickViewOpen(e)}/>
+        <QuickView images={imgUrls} name={name} desc={desc} price={price} discount={discount} uid={uid as string} colors={colors} capacity={capacity} setIsOpen={(e) => setQuickViewOpen(e)} />
       }
-    </div>
+    </>
   )
 }
 

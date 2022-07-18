@@ -27,44 +27,47 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, ui
   });
 
   useEffect(() => {
-      async function getImages() {
-        const urls = await getProductImages(uid as string);
-        setImages(urls);
-      }
+    async function getImages() {
+      const urls = await getProductImages(uid as string);
+      setImages(urls);
+    }
 
-      getImages();
+    getImages();
   })
 
   return (
-    <div
-      className='flex flex-col p-5 items-center w-80 rounded-lg border hover:(shadow-lg) duration-500'
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      {
-        images.length > 0 &&
-        <img src={images[0]} alt={name} className='h-56 rounded-lg' />
-      }
-      <span className='font-bold uppercase my-3'>{name}</span>
-      <span className='text-justify text-gray-500 text-sm'>{desc}</span>
+    <>
+      <div
+        className='flex flex-col p-5 items-center w-80 rounded-lg select-none cursor-pointer border hover:(shadow-lg) duration-500'
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+        onClick={() => setQuickViewOpen(true)}
+      >
+        {
+          images.length > 0 &&
+          <img src={images[0]} alt={name} className='h-56 rounded-lg' />
+        }
+        <span className='font-bold uppercase my-3'>{name}</span>
+        <span className='text-justify text-gray-500 text-sm'>{desc.substring(0, 50)}...</span>
 
-      <div className='flex flex-col items-center mt-3'>
-        <div className='flex gap-3 items-end'>
-          <span className='text-xl text-red-500 font-bold'>{discount}%</span>
-          <span className='text-2xl font-bold tracking-wide'>Rs. {price - (price * discount / 100)}</span>
+        <div className='flex flex-col items-center mt-3'>
+          <div className='flex gap-3 items-end'>
+            <span className='text-xl text-red-500 font-bold'>{discount}%</span>
+            <span className='text-2xl font-bold tracking-wide'>Rs. {price - (price * discount / 100)}</span>
+          </div>
+          <small className='line-through font-bold font-mono text-lg'>MRP. <span className='text-red-500'>{price}</span></small>
         </div>
-        <small className='line-through font-bold font-mono text-lg'>MRP. <span className='text-red-500'>{price}</span></small>
-      </div>
 
-      <animated.div className='flex gap-2 mt-5 h-auto' style={spring}>
-        <button className='btn btn-red-outline'>Buy Now</button>
-        <button className='btn btn-red-outline' onClick={() => setQuickViewOpen(!quickViewOpen)}>Quick View</button>
-      </animated.div>
+        <animated.div className='flex gap-2 mt-5 h-auto' style={spring}>
+          <button className='btn btn-red-outline'>Buy Now</button>
+          <button className='btn btn-red-outline' onClick={() => setQuickViewOpen(!quickViewOpen)}>Quick View</button>
+        </animated.div>
+      </div>
       {
         quickViewOpen &&
-        <QuickView images={images!} name={name} desc={desc} price={price} discount={discount} uid={uid} colors={colors} capacity={capacity} setIsOpen={(e) => setQuickViewOpen(e)}/>
+        <QuickView images={images!} name={name} desc={desc} price={price} discount={discount} uid={uid} colors={colors} capacity={capacity} setIsOpen={(e) => setQuickViewOpen(e)} />
       }
-    </div>
+    </>
   )
 }
 

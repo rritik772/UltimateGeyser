@@ -13,20 +13,20 @@ function Navbar() {
     }, [])
 
     return (
-        <nav className="<lg:(flex-col items-start gap-10) lg:(flex-row justify-between) flex select-none bg-white">
-            <section className="<lg:(flex-col) lg:(flex-row) flex items-center">
+        <nav className="<lg:(flex-col) lg:(flex-row justify-between) flex select-none bg-white">
+            <section className="<lg:(flex-col self-start) lg:(flex-row) flex items-center">
 
                 <div className="flex gap-4 items-center pl-2">
                     <i className="lg:(hidden) bi bi-list text-3xl" onClick={() => setOpen(!open)}></i>
                     <Link href="/">
                         <a>
-                            <button className="<lg:(mt-2) lg:(mt-0) bg-red-500 text-white py-3 px-4 text-xl tracking-widest uppercase rounded-lg cursor-pointer rubik font-black"><img src="/assets/images/logo/logo.jpeg" className='w-36' /></button>
+                            <button className="<lg:(my-2) lg:(mt-0) bg-red-500 text-white py-3 px-4 text-xl tracking-widest uppercase rounded-lg cursor-pointer rubik font-black"><img src="/assets/images/logo/logo.jpeg" className='w-36' /></button>
                         </a>
                     </Link>
                 </div>
                 {
                     open &&
-                    <div className="<lg:(ml-8 gap-3 flex-col text-md) lg:(ml-10 gap-4 flex-row text-lg) flex uppercase tracking-wide">
+                    <div className="<lg:(gap-3 flex-col text-md) lg:(ml-10 gap-4 flex-row text-lg) flex uppercase tracking-wide">
                         <div className='mt-2' />
                         <NavLink value="products" link="/products" current={router.asPath} />
                         <NavLink value="contact us" link="/contactus" current={router.asPath} />
