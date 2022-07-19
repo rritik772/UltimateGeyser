@@ -17,8 +17,8 @@ const QuickView: FC<QuickViewProps> = ({ images, name, uid, desc, discount, pric
     return (
         <>
             <div className='fixed z-10 bg-gray-100/50 blur-xl h-screen w-screen top-0 left-0' onClick={() => setIsOpen(false)}/>
-            <div className='fixed top-0 bottom-0 left-0 right-0 m-auto z-30 <md:(mt-10 mr-5 ml-5 pb-20) md:(w-[50rem] h-max) border border-red-500 shadow rounded-lg bg-gray-100 overflow-visible'>
-            <section className='<md:(grid-cols-1 h-screen overflow-y-scroll) md:(grid-cols-2) grid gap-5 p-5 pb-24'>
+            <div className='fixed top-0 bottom-0 left-0 right-0 m-auto z-30 <md:(mt-7 mr-5 ml-5 pb-20) md:(w-[50rem] h-max) border border-red-500 shadow rounded-lg bg-gray-100 overflow-visible'>
+            <section className='<md:(grid-cols-1 h-screen overflow-y-scroll pb-24) md:(grid-cols-2) grid gap-5 p-5'>
 
                 <button className='absolute top-0 right-0 px-2 py-1 bg-red-500 rounded-full text-white text-xl -m-4 cursor-pointer' onClick={() => setIsOpen(false)}>
                     <i className='bi bi-x-circle' />
