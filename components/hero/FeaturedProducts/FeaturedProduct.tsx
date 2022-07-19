@@ -4,6 +4,7 @@ import { ProductModal } from '../../../models/product/product-modal';
 import { getFeaturedProduct } from '../../../utils/firebase/database/productsDatabase';
 import { getProductImages } from '../../../utils/firebase/storage/productStorage';
 import Loading from '../../loading/Loading';
+import CallUs from './CallUs';
 import QuickView from './QuickView';
 
 interface SingleProductProps {
@@ -19,6 +20,7 @@ interface SingleProductProps {
 const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, uid, colors, capacity }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const [buyNowToggle ,setBuyNowToggle ] = useState(false);
   const [images, setImages] = useState<string[]>([])
 
   const spring = useSpring({
@@ -41,7 +43,6 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, ui
         className='flex flex-col p-5 items-center w-80 rounded-lg select-none cursor-pointer border hover:(shadow-lg) duration-500'
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
-        onClick={() => setQuickViewOpen(true)}
       >
         {
           images.length > 0 &&
@@ -59,13 +60,17 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, ui
         </div>
 
         <animated.div className='flex gap-2 mt-5 h-auto' style={spring}>
-          <button className='btn btn-red-outline'>Buy Now</button>
+          <button className='btn btn-red-outline' onClick={() => setBuyNowToggle(!buyNowToggle)}>Buy Now</button>
           <button className='btn btn-red-outline' onClick={() => setQuickViewOpen(!quickViewOpen)}>Quick View</button>
         </animated.div>
       </div>
       {
         quickViewOpen &&
         <QuickView images={images!} name={name} desc={desc} price={price} discount={discount} uid={uid} colors={colors} capacity={capacity} setIsOpen={(e) => setQuickViewOpen(e)} />
+      }
+      {
+        buyNowToggle &&
+        <CallUs setIsOpen={(e) => setBuyNowToggle(e)}/>
       }
     </>
   )

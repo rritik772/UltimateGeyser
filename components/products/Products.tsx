@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from 'react'
 import { useSpring, animated } from 'react-spring';
 import { ProductModal } from '../../models/product/product-modal';
 import { getProductImages } from '../../utils/firebase/storage/productStorage';
+import CallUs from '../hero/FeaturedProducts/CallUs';
 import QuickView from '../hero/FeaturedProducts/QuickView';
 import products_list from './products.json';
 
@@ -22,6 +23,7 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, co
   const [imgUrls, setImgUrls] = useState<string[]>([]);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
   const [loading, setLoading] = useState(false)
+  const [buyNowToggle, setBuyNowToggle] = useState(false);
 
   useEffect(() => {
     async function getImageUrls() {
@@ -69,13 +71,17 @@ const SingleProduct: FC<SingleProductProps> = ({ name, desc, price, discount, co
         </div>
 
         <animated.div className='flex gap-2' style={spring}>
-          <button className='btn btn-red'>Buy Now</button>
+          <button className='btn btn-red' onClick={() => setBuyNowToggle(true)}>Buy Now</button>
           <button className='btn btn-red-outline' onClick={() => setQuickViewOpen(!quickViewOpen)}>Quick View</button>
         </animated.div>
       </div>
       {
         quickViewOpen &&
         <QuickView images={imgUrls} name={name} desc={desc} price={price} discount={discount} uid={uid as string} colors={colors} capacity={capacity} setIsOpen={(e) => setQuickViewOpen(e)} />
+      }
+      {
+        buyNowToggle &&
+        <CallUs setIsOpen={(e) => setBuyNowToggle(e)} />
       }
     </>
   )
